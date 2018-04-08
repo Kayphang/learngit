@@ -1,0 +1,210 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+
+    <script>
+        $(document).ready(function(){
+           
+            
+        });
+        
+    </script>
+    <body>
+    <div class="btn-list">
+        <div class="left">
+            <div class="left-top"><div class="btn2 circle fx-top" onclick="test1"></div></div>
+            <div class="left-right"><div class="btn2 circle fx-right" onclick="test2"></div></div>
+            <div class="left-bottom"><div class="btn2 circle fx-bottom" onclick="test3"></div></div>
+            <div class="left-left"><div class="btn2 circle fx-left" onclick="test4"></div></div>
+        </div> 
+        <div class="right">
+                <div class="btn circle"  onclick="test">按钮一</div>
+                <div class="btn circle"  onclick="test">按钮二</div>
+                <div class="btn circle"  onclick="test">按钮三</div>
+                <div class="btn circle"  onclick="test">按钮四</div>
+                <div class="btn circle"  onclick="test">按钮五</div>
+                <div class="btn circle"  onclick="test">按钮六</div>
+            </div> 
+            <div class="bottom">
+                <input type="range" name="points" id="points" value="50" min="0" max="100">
+            </div>
+    </div>
+    </body>
+    
+    <style type="text/css">
+    input[type=range] {
+    -webkit-appearance: none;
+    width: 492px;
+    border-radius: 10px; /*这个属性设置使填充进度条时的图形为圆角*/
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}    
+input[type=range]::-webkit-slider-runnable-track {
+    height: 15px;
+    border-radius: 10px; /*将轨道设为圆角的*/
+    box-shadow: 0 1px 1px #def3f8, inset 0 .125em .125em #0d1112; /*轨道内置阴影效果*/
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 25px;
+    width: 25px;
+    margin-top: -5px; /*使滑块超出轨道部分的偏移量相等*/
+    background: #ffffff; 
+    border-radius: 50%; /*外观设置为圆形*/
+    border: solid 0.125em rgba(205, 224, 230, 0.5); /*设置边框*/
+    box-shadow: 0 .125em .125em #3b4547; /*添加底部阴影*/
+}
+
+    body,html{
+    height:100%;
+    user-select: none;
+}
+body{
+    background:#f8f8f8;
+    
+    
+    position: absolute;
+}
+.btn-list{
+    width: 1000px;
+    height: 400px;
+    background: url(xiaolu.jpg);
+}
+.btn{
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    color: #fff;
+    float: left;
+    margin: 30px;
+    box-shadow: 0px 2px 20px 6px #999
+}
+.btn2{
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    color: #fff;
+    float: left;
+    margin: 15px;
+    box-shadow: 0px 2px 20px 6px #999
+}
+.btn:active{
+    box-shadow:none;
+
+}
+.btn2:active{
+    box-shadow:none;
+
+}
+.circle{
+    border-radius: 50%;
+}
+
+
+
+
+.left{
+        width: 300px;
+        height: 300px;
+        margin: 20px 0 0 30px;
+        position: absolute;
+    }
+    .left-top ,.left-right ,.left-bottom ,.left-left{
+        width: 100px;
+        height: 100px;
+
+    }
+    .left-top{
+        float: left;
+        margin-left: 100px;
+        
+    }
+    .fx-top{
+        background-image: url("timg.jpg");
+        background-size: cover;
+    }
+    .left-right{
+        float: left;
+        margin-left: 200px;
+        
+    }
+    .fx-right{
+        background-image: url("timg.jpg");
+        background-size: cover;
+        transform: rotate(90deg);
+        -ms-transform: rotate(90deg);             /* IE 9 */
+        -webkit-transform: rotate(90deg);      /* Safari and Chrome */
+        -o-transform: rotate(90deg);              /* Opera */
+        -moz-transform: rotate(90deg);
+    }
+    .left-bottom{
+        float: left;
+        margin-left: 100px;
+        
+    }
+    .fx-bottom{
+        background-image: url("timg.jpg");
+        background-size: cover;
+        transform: rotate(180deg);
+        -ms-transform: rotate(180deg);             /* IE 9 */
+        -webkit-transform: rotate(180deg);      /* Safari and Chrome */
+        -o-transform: rotate(180deg);              /* Opera */
+        -moz-transform: rotate(180deg);
+    }
+    .left-left{
+        float: left;
+        margin-top: -100px;
+        margin-left: -200px;
+        
+    }
+    .fx-left{
+        background-image: url("timg.jpg");
+        background-size: cover;
+        transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);             /* IE 9 */
+        -webkit-transform: rotate(-90deg);      /* Safari and Chrome */
+        -o-transform: rotate(-90deg);              /* Opera */
+        -moz-transform: rotate(-90deg);
+    }
+.right{
+    width: 432px;
+    height: 300px;
+    margin: 50px 0 0 500px;
+    position: absolute;
+}
+.bottom{
+    width: 495px;
+    height: 50px;
+    float: left;
+    margin: 335px 0 10px 235px;
+    color: #fff;
+    /* box-shadow: 0px 2px 20px 6px #999 */
+}
+.range-style{
+    background-color: #e9e9e9;
+    border-color: #ddd;
+    color: #333;
+    text-shadow: 0 1px 0 #eee;
+    font-weight: 700;
+    position: relative;
+    overflow: visible;
+    border-width: 1px;
+    border-style: solid;
+    height: 15px;
+    margin: 0 15px 0 68px;
+    top: 6px;
+}
+</style>
+</html>

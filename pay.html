@@ -1,0 +1,995 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    
+    <script type="text/javascript">var __serverTime='2018-11-23 16:59:17';</script>
+    <script type="text/javascript">
+        var __startTime=new Date(),_speedMark = new Date(),_sTime = __startTime.getTime();
+        // window._USE_REPORT_QUEUE='1';
+    </script>
+    <script type="text/javascript">
+        !function(a){function e(n){if(c[n])return c[n].exports;var d=c[n]={"exports":{},"id":n,"loaded":!1};return a[n].call(d.exports,d,d.exports,e),d.loaded=!0,d.exports}var n=window["webpackJsonp"];window["webpackJsonp"]=function(t,f){for(var o,l,p=0,s=[];p<t.length;p++)l=t[p],d[l]&&s.push.apply(s,d[l]),d[l]=0;for(o in f)a[o]=f[o];for(n&&n(t,f);s.length;)s.shift().call(null,e);if(f[0])return c[0]=0,e(0)};var c={},d={"17":0};e.e=function(a,n){if(0===d[a])return n.call(null,e);if(void 0!==d[a])d[a].push(n);else{d[a]=[n];var c=document.getElementsByTagName("head")[0],t=document.createElement("script");t.type="text/javascript",t.charset="utf-8",t.async=!0,t.src=e.p+"js/app/"+({"0":"apiDemo","1":"demo","2":"develop","3":"game","4":"gameChannel","5":"monthChannel","6":"sjsjch","7":"ltmclub","8":"lzfssh","9":"qbChannel","10":"goodsChannel","11":"goods","12":"month","13":"nbaTeam","14":"paybank","15":"pending","16":"qb"}[a]||a)+"."+{"0":"f6cf1f9c4acf10870197","1":"389a6a9879236493f509","2":"1073c3a38aaa6e27f195","3":"1c135a98b187c961a12c","4":"31a640ddc5d92424a387","5":"d8e1781417ef2bbb51bf","6":"192459ea801c24ea4906","7":"a1c61e6180f273fd4e9d","8":"0e33fa5b14205dc42845","9":"c2fe45401abf4e841a46","10":"47ce06717c833f3b7148","11":"a3ecddd744da228fe408","12":"2ab46d3a4ddcb274bba3","13":"7392041b34449a1936ed","14":"88a4f389da1a7b5b559e","15":"2d14c0785e5039572abf","16":"6b38c9b3547255bde2ef"}[a]+".js",c.appendChild(t)}},e.m=a,e.c=c,e.p="//midas.gtimg.cn/midas/minipay_v2/"}([]);
+    </script>
+    <script type="text/javascript">
+        window.H_T_report=function(e,n){if(n=n||"save",location.href.indexOf("sandbox=1")==-1&&location.href.indexOf("sandbox=2")==-1){var i=location.protocol+"//report.huatuo.qq.com/report.cgi?";if(!e.uin){var a=location.href.match(/openid=[^&]+/),o=a?a[0]:"";if(o){var r=o.split("=");r.length>1&&(o=r[1])}e.uin=o}var t=window.performance?window.performance.timing:0,g=t?t.responseEnd-t.navigationStart:0;e.index&&(g?e.index+=g:(e.indexnotiming=e.index,delete e.index));var s={save:{flag3:1,index:32,jsall:30,css:31,web_page_info:33,web_save:34,get_qr_image:35,web_get_friends:36,indexnotiming:37},qb:{flag3:2,index:34,jsall:33,css:32,web_page_info:31,web_save:30,get_qr_image:29,web_get_friends:28,indexnotiming:35},bg:{flag3:3,index:28,jsall:29,css:30,web_page_info:31,web_save:32,get_qr_image:33,web_get_friends:34,indexnotiming:35},month:{flag3:4,index:34,jsall:32,css:33,web_page_info:31,web_save:30,get_qr_image:29,web_get_friends:28,indexnotiming:35}},f={appid:"20289",platform:"pc",app:"other",uin:e.uin||"",speedparams:"flag1=21858&flag2=1"},d="",_=[],l=n&&s[n]?s[n]:null;if(l){for(var p in l)e[p]&&_.push(l[p]+"="+e[p]);if(_.length){f.speedparams+="&flag3="+l.flag3+"&"+_.join("&");for(var m in f)d+=m+"="+encodeURIComponent(f[m])+"&";d=d.substr(0,d.length-1),(new Image).src=i+d}}}};
+    </script>
+    <!--域名预解析-->
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <link rel="dns-prefetch" href="//api.unipay.qq.com" />
+    <link rel="dns-prefetch" href="//midas.gtimg.cn/" />
+
+    <title>游戏充值</title>
+    <script type="text/javascript">/**
+     * Created by taddeng on 2016/6/25.
+     */
+    if (typeof JSON !== "object") {
+        JSON = {};
+    }
+    
+    (function () {
+        "use strict";
+    
+        var rx_one = /^[\],:{}\s]*$/;
+        var rx_two = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g;
+        var rx_three = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g;
+        var rx_four = /(?:^|:|,)(?:\s*\[)+/g;
+        var rx_escapable = /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
+        var rx_dangerous = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
+    
+        function f(n) {
+            // Format integers to have at least two digits.
+            return n < 10
+                ? "0" + n
+                : n;
+        }
+    
+        function this_value() {
+            return this.valueOf();
+        }
+    
+        if (typeof Date.prototype.toJSON !== "function") {
+    
+            Date.prototype.toJSON = function () {
+    
+                return isFinite(this.valueOf())
+                    ? this.getUTCFullYear() + "-" +
+                f(this.getUTCMonth() + 1) + "-" +
+                f(this.getUTCDate()) + "T" +
+                f(this.getUTCHours()) + ":" +
+                f(this.getUTCMinutes()) + ":" +
+                f(this.getUTCSeconds()) + "Z"
+                    : null;
+            };
+    
+            Boolean.prototype.toJSON = this_value;
+            Number.prototype.toJSON = this_value;
+            String.prototype.toJSON = this_value;
+        }
+    
+        var gap;
+        var indent;
+        var meta;
+        var rep;
+    
+    
+        function quote(string) {
+    
+    // If the string contains no control characters, no quote characters, and no
+    // backslash characters, then we can safely slap some quotes around it.
+    // Otherwise we must also replace the offending characters with safe escape
+    // sequences.
+    
+            rx_escapable.lastIndex = 0;
+            return rx_escapable.test(string)
+                ? "\"" + string.replace(rx_escapable, function (a) {
+                var c = meta[a];
+                return typeof c === "string"
+                    ? c
+                    : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4);
+            }) + "\""
+                : "\"" + string + "\"";
+        }
+    
+    
+        function str(key, holder) {
+    
+    // Produce a string from holder[key].
+    
+            var i;          // The loop counter.
+            var k;          // The member key.
+            var v;          // The member value.
+            var length;
+            var mind = gap;
+            var partial;
+            var value = holder[key];
+    
+    // If the value has a toJSON method, call it to obtain a replacement value.
+    
+            if (value && typeof value === "object" &&
+                typeof value.toJSON === "function") {
+                value = value.toJSON(key);
+            }
+    
+    // If we were called with a replacer function, then call the replacer to
+    // obtain a replacement value.
+    
+            if (typeof rep === "function") {
+                value = rep.call(holder, key, value);
+            }
+    
+    // What happens next depends on the value's type.
+    
+            switch (typeof value) {
+                case "string":
+                    return quote(value);
+    
+                case "number":
+    
+    // JSON numbers must be finite. Encode non-finite numbers as null.
+    
+                    return isFinite(value)
+                        ? String(value)
+                        : "null";
+    
+                case "boolean":
+                case "null":
+    
+    // If the value is a boolean or null, convert it to a string. Note:
+    // typeof null does not produce "null". The case is included here in
+    // the remote chance that this gets fixed someday.
+    
+                    return String(value);
+    
+    // If the type is "object", we might be dealing with an object or an array or
+    // null.
+    
+                case "object":
+    
+    // Due to a specification blunder in ECMAScript, typeof null is "object",
+    // so watch out for that case.
+    
+                    if (!value) {
+                        return "null";
+                    }
+    
+    // Make an array to hold the partial results of stringifying this object value.
+    
+                    gap += indent;
+                    partial = [];
+    
+    // Is the value an array?
+    
+                    if (Object.prototype.toString.apply(value) === "[object Array]") {
+    
+    // The value is an array. Stringify every element. Use null as a placeholder
+    // for non-JSON values.
+    
+                        length = value.length;
+                        for (i = 0; i < length; i += 1) {
+                            partial[i] = str(i, value) || "null";
+                        }
+    
+    // Join all of the elements together, separated with commas, and wrap them in
+    // brackets.
+    
+                        v = partial.length === 0
+                            ? "[]"
+                            : gap
+                            ? "[\n" + gap + partial.join(",\n" + gap) + "\n" + mind + "]"
+                            : "[" + partial.join(",") + "]";
+                        gap = mind;
+                        return v;
+                    }
+    
+    // If the replacer is an array, use it to select the members to be stringified.
+    
+                    if (rep && typeof rep === "object") {
+                        length = rep.length;
+                        for (i = 0; i < length; i += 1) {
+                            if (typeof rep[i] === "string") {
+                                k = rep[i];
+                                v = str(k, value);
+                                if (v) {
+                                    partial.push(quote(k) + (
+                                            gap
+                                                ? ": "
+                                                : ":"
+                                        ) + v);
+                                }
+                            }
+                        }
+                    } else {
+    
+    // Otherwise, iterate through all of the keys in the object.
+    
+                        for (k in value) {
+                            if (Object.prototype.hasOwnProperty.call(value, k)) {
+                                v = str(k, value);
+                                if (v) {
+                                    partial.push(quote(k) + (
+                                            gap
+                                                ? ": "
+                                                : ":"
+                                        ) + v);
+                                }
+                            }
+                        }
+                    }
+    
+    // Join all of the member texts together, separated with commas,
+    // and wrap them in braces.
+    
+                    v = partial.length === 0
+                        ? "{}"
+                        : gap
+                        ? "{\n" + gap + partial.join(",\n" + gap) + "\n" + mind + "}"
+                        : "{" + partial.join(",") + "}";
+                    gap = mind;
+                    return v;
+            }
+        }
+    
+    // If the JSON object does not yet have a stringify method, give it one.
+    
+        if (typeof JSON.stringify !== "function") {
+            meta = {    // table of character substitutions
+                "\b": "\\b",
+                "\t": "\\t",
+                "\n": "\\n",
+                "\f": "\\f",
+                "\r": "\\r",
+                "\"": "\\\"",
+                "\\": "\\\\"
+            };
+            JSON.stringify = function (value, replacer, space) {
+    
+    // The stringify method takes a value and an optional replacer, and an optional
+    // space parameter, and returns a JSON text. The replacer can be a function
+    // that can replace values, or an array of strings that will select the keys.
+    // A default replacer method can be provided. Use of the space parameter can
+    // produce text that is more easily readable.
+    
+                var i;
+                gap = "";
+                indent = "";
+    
+    // If the space parameter is a number, make an indent string containing that
+    // many spaces.
+    
+                if (typeof space === "number") {
+                    for (i = 0; i < space; i += 1) {
+                        indent += " ";
+                    }
+    
+    // If the space parameter is a string, it will be used as the indent string.
+    
+                } else if (typeof space === "string") {
+                    indent = space;
+                }
+    
+    // If there is a replacer, it must be a function or an array.
+    // Otherwise, throw an error.
+    
+                rep = replacer;
+                if (replacer && typeof replacer !== "function" &&
+                    (typeof replacer !== "object" ||
+                    typeof replacer.length !== "number")) {
+                    throw new Error("JSON.stringify");
+                }
+    
+    // Make a fake root object containing our value under the key of "".
+    // Return the result of stringifying the value.
+    
+                return str("", {"": value});
+            };
+        }
+    
+    
+    // If the JSON object does not yet have a parse method, give it one.
+    
+        if (typeof JSON.parse !== "function") {
+            JSON.parse = function (text, reviver) {
+    
+    // The parse method takes a text and an optional reviver function, and returns
+    // a JavaScript value if the text is a valid JSON text.
+    
+                var j;
+    
+                function walk(holder, key) {
+    
+    // The walk method is used to recursively walk the resulting structure so
+    // that modifications can be made.
+    
+                    var k;
+                    var v;
+                    var value = holder[key];
+                    if (value && typeof value === "object") {
+                        for (k in value) {
+                            if (Object.prototype.hasOwnProperty.call(value, k)) {
+                                v = walk(value, k);
+                                if (v !== undefined) {
+                                    value[k] = v;
+                                } else {
+                                    delete value[k];
+                                }
+                            }
+                        }
+                    }
+                    return reviver.call(holder, key, value);
+                }
+    
+    
+    // Parsing happens in four stages. In the first stage, we replace certain
+    // Unicode characters with escape sequences. JavaScript handles many characters
+    // incorrectly, either silently deleting them, or treating them as line endings.
+    
+                text = String(text);
+                rx_dangerous.lastIndex = 0;
+                if (rx_dangerous.test(text)) {
+                    text = text.replace(rx_dangerous, function (a) {
+                        return "\\u" +
+                            ("0000" + a.charCodeAt(0).toString(16)).slice(-4);
+                    });
+                }
+    
+    // In the second stage, we run the text against regular expressions that look
+    // for non-JSON patterns. We are especially concerned with "()" and "new"
+    // because they can cause invocation, and "=" because it can cause mutation.
+    // But just to be safe, we want to reject all unexpected forms.
+    
+    // We split the second stage into 4 regexp operations in order to work around
+    // crippling inefficiencies in IE's and Safari's regexp engines. First we
+    // replace the JSON backslash pairs with "@" (a non-JSON character). Second, we
+    // replace all simple value tokens with "]" characters. Third, we delete all
+    // open brackets that follow a colon or comma or that begin the text. Finally,
+    // we look to see that the remaining characters are only whitespace or "]" or
+    // "," or ":" or "{" or "}". If that is so, then the text is safe for eval.
+    
+                if (
+                    rx_one.test(
+                        text
+                            .replace(rx_two, "@")
+                            .replace(rx_three, "]")
+                            .replace(rx_four, "")
+                    )
+                ) {
+    
+    // In the third stage we use the eval function to compile the text into a
+    // JavaScript structure. The "{" operator is subject to a syntactic ambiguity
+    // in JavaScript: it can begin a block or an object literal. We wrap the text
+    // in parens to eliminate the ambiguity.
+    
+                    j = eval("(" + text + ")");
+    
+    // In the optional fourth stage, we recursively walk the new structure, passing
+    // each name/value pair to a reviver function for possible transformation.
+    
+                    return (typeof reviver === "function")
+                        ? walk({"": j}, "")
+                        : j;
+                }
+    
+    // If the text is not JSON parseable, then a SyntaxError is thrown.
+    
+                throw new SyntaxError("JSON.parse");
+            };
+        }
+    }());</script>
+    <!--<script type="text/javascript">&lt;!&ndash;@echo js.sizzle &ndash;&gt;</script>-->
+    <!--https://sentry.oa.com/Tencent/webpay/-->
+    <script src="//pub.idqqimg.com/pc/misc/sentry/raven.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        Raven.config('//99648d474fbb40e3a196644695f145f8@report.url.cn/sentry/186',{
+            environment:location.host.indexOf("sandbox")>-1?"sandbox":"production",
+            logger:"webpay",
+            release:"webpayV1.0R510"
+        }).install();
+        window.version = "webpayV1.0R510";
+    </script>
+    <!--[if IE 6]>
+    <script type="text/javascript">
+        document.execCommand("BackgroundImageCache",false,true);
+    </script>
+    <![endif]-->
+    <!--<script type="text/javascript">-->
+        <!--&lt;!&ndash;@echo js.closest &ndash;&gt;-->
+    <!--</script>-->
+    <link rel="stylesheet" href="//midas.gtimg.cn/midas/minipay_v2/css/main.e52185c4d9620dbb7bd43048f846a8fa.css?max_age=8035200&gzip_on=1"/>
+    <style type="text/css">
+        input::-ms-clear {  display: none; width : 0; height: 0; }
+        input::-ms-reveal {  display: none; width : 0; height: 0; }
+        html,body{
+            margin: 0;
+            height: 100%;
+        }
+        body{
+            margin: auto;
+            overflow: hidden;
+            *position: relative;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        .panel{
+            display: none;
+
+        }
+        .panel.show{
+            display: block;
+        }
+        .cp-container{margin: auto;}
+        .mdsweb-loading-wrapper{
+            background: #fff;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            top:0;left:0;
+        }
+        .f_toe{
+            overflow:hidden;
+            word-wrap:normal;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            max-width: 60px;
+            _width:60px;
+            display: inline-block;
+            *display:inline;
+            *zoom:1;
+            vertical-align: bottom;
+
+        }
+    </style>
+    
+
+
+
+<link rel="stylesheet" href="//midas.gtimg.cn/midas/minipay_v2/css/skin/skin-pay.db81c3ccd4e4c66f7a6db96b218b4d1d.css?max_age=8035200&gzip_on=1"/>
+</head>
+<body>
+<div class="cp-container" style="height:100%">
+    <div id="wrapper" class="cp-body" ms-controller="root" style="height:100%">
+
+
+        <div id="order" class="panel show">
+
+            <div ms-controller="order">
+                <div ms-html="orderHtml" ms-visible="showOrder"></div>
+            </div>
+
+        </div>
+
+
+        <div id="subChannel" class="panel">
+            <div  ms-controller="subChannel">
+                <div ms-html="subChannel"></div>
+            </div>
+        </div>
+
+
+        <div id="result" class="panel">
+            <div ms-controller="result">
+                <div ms-html="resultWrapper"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="animation_mask" class="animation_mask"></div>
+<div id="animation_masktop" class="animation_masktop"></div>
+
+
+
+
+
+<div class="cp-body mdsweb-loading-wrapper" id="cp_loading_">
+    <div class="mdsweb-loading">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    (function () {
+        if (!window.console) {
+            
+            window.console = {
+                log: function () {
+                }
+            };
+        }
+    })();
+</script>
+<script type="text/javascript">
+    window.__BANK_CONFIG={
+        "cmb": {
+            "name": "招商银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit",
+                "credit"
+            ],
+            "credit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1038,
+                "kj": 3006
+            },
+            "debit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1001,
+                "kj": 2011
+            }
+        },
+
+        "icbc": {
+            name: '工商银行',
+            cardTypes: ['debit', 'credit'],
+            kjCards: ['debit', 'credit'],
+            credit: {
+                payTypes: ['bank', 'kj'],
+                bank: 1002,
+                kj: 3003
+            },
+            debit: {
+                payTypes: ['bank', 'kj'],
+                bank: 1071,
+                kj: 2032
+            }
+        },
+        "ccb": {
+            "name": "建设银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit",
+                "credit"
+            ],
+            "credit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1081,
+                "kj": 3106
+            },
+            "debit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1003,
+                "kj": 2013
+            }
+        },
+        "abc": {
+            "name": "农业银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit",
+                "credit"
+            ],
+            "credit": {
+                "payTypes": [
+                    "kj"
+                ],
+                "kj": 3007
+            },
+            "debit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1005,
+                "kj": 4186
+            }
+        },
+        "boc": {
+            "name": "中国银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit"
+            ],
+            "credit": {
+                "payTypes": [
+                    "bank"
+                ],
+                "bank": 1052
+            },
+            "debit": {
+                "payTypes": [
+                    "bank","kj"
+                ],
+                "bank": 1026,
+                "kj": 2028
+            }
+        },
+        "cib": {
+            "name": "兴业银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit",
+                "credit"
+            ],
+            "credit": {
+                "payTypes": [
+                    //"bank",
+                    "kj"
+                ],
+                //"bank": 1059,
+                "kj": 3113
+            },
+            "debit": {
+                "payTypes": [
+                    //"bank",
+                    "kj"
+                ],
+                //"bank": 1009,
+                "kj": 2021
+            }
+        },
+        "bob": {
+            "name": "北京银行",
+            "cardTypes": [
+                "debit"
+            ],
+            "debit": {
+                "payTypes": [
+                    "bank"
+                ],
+                "bank": 1032
+            }
+        },
+        "ceb": {
+            "logo": "cebb",
+            "name": "光大银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit",
+                "credit"
+            ],
+            "credit": {
+                "payTypes": [
+                    "kj"
+                ],
+                "kj": 3108
+            },
+            "debit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1078,
+                "kj": 2014
+            }
+        },
+        "comm": {
+            "logo": "boco",
+            "name": "交通银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit"
+            ],
+            "credit": {
+                "payTypes": [
+                    "bank"
+                ],
+                "bank": 1020
+            },
+            "debit": {
+                "payTypes": [
+                    "bank","kj"
+                ],
+                "bank": 1072,
+                "kj": 2041
+            }
+        },
+        "cmbc": {
+            "name": "民生银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit"
+            ],
+            "credit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1006,
+                "kj": 3119
+            },
+            "debit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1041,
+                "kj": 2008
+            }
+        },
+        "citic": {
+            "logo": "ecitic",
+            "name": "中信银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit",
+                "credit"
+            ],
+            "credit": {
+                "payTypes": ["kj"],
+                "kj": 3115
+            },
+            "debit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1021,
+                "kj": 2125
+            }
+        },
+        "pab": {
+            "logo": "pingan",
+            "name": "平安银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit",
+                "credit"
+            ],
+            "credit": {
+                "payTypes": [
+                    "kj"
+                ],
+                "kj": 3110
+            },
+            "debit": {
+                "payTypes": [
+                    "bank","kj"
+                ],
+                "bank": 1010,
+                "kj": 2024
+            }
+        },
+        "psbc": {
+            "logo": "post",
+            "name": "邮政银行",
+            "cardTypes": [
+                "debit"
+            ],
+            "kjCards": [
+                "debit"
+            ],
+            "debit": {
+                "payTypes": [
+                    "bank","kj"
+                ],
+                "bank": 1066,
+                "kj": 2023
+            }
+        },
+        "nbcb": {
+            "name": "宁波银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "credit"
+            ],
+            "credit": {
+                "payTypes": [
+                    "kj"
+                ],
+                "kj": 3201
+            },
+            "debit": {
+                "payTypes": [
+                    "bank"
+                ],
+                "bank": 1112
+            }
+        },
+        "njcb": {
+            "name": "南京银行",
+            "cardTypes": [
+                "debit"
+            ],
+            "kjCards": [],
+            "debit": {
+                "payTypes": [
+                    "bank"
+                ],
+                "bank": 1054
+            }
+        },
+        "gdb": {
+            "name": "广发银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit",
+                "credit"
+            ],
+            "credit": {
+                "payTypes": [
+                    //"bank",
+                    "kj"
+                ],
+                //"bank": 1079,
+                "kj": 3109
+            },
+            "debit": {
+                "payTypes": [
+                    //"bank",
+                    "kj"
+                ],
+                //"bank": 1051,
+                "kj": 2016
+            }
+        },
+        "spdb": {
+            "name": "浦发银行",
+            "cardTypes": [
+                "debit",
+                "credit"
+            ],
+            "kjCards": [
+                "debit",
+                "credit"
+            ],
+            "credit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1004,
+                "kj": 3117
+            },
+            "debit": {
+                "payTypes": [
+                    "bank",
+                    "kj"
+                ],
+                "bank": 1110,
+                "kj":2017
+            }
+        },
+       "srcb": {
+           "name": "上海农商",
+           "cardTypes": [
+               "debit"
+           ],
+           "kjCards": [],
+           "debit": {
+               "payTypes": [
+                   "bank"
+               ],
+               "bank": 1113
+           }
+       },
+       "bea": {
+           "logo": "hkbea",
+           "name": "东亚银行",
+           "cardTypes": [
+               "debit",
+               "credit"
+           ],
+           "kjCards": [],
+           "credit": {
+               "payTypes": [
+                   "bank"
+               ],
+               "bank": 1077
+           },
+           "debit": {
+               "payTypes": [
+                   "bank"
+               ],
+               "bank": 1076
+           }
+       }
+    };
+</script>
+<script type="text/javascript">
+    // var WHITELISTUSER={
+    //     hfpay:['370197392','000000000000000000000000000902EB','00000000000000000000000013C88910','0000000000000000000000001D48F8B7','000000000000000000000000771C5E03','000000000000000000000000067EA4B6','00000000000000000000000016F4A502','0000000000000000000000001B4555C5','0000000000000000000000000C1AB4FE']
+    // };
+  window._QB_Channel_UseCookie = [
+    "1450011526","1450008575","1450007773","1450000267"
+  ]
+</script>
+<script type="text/javascript">
+    //接入系统无法支持汇率大于1的点券充值，此时通过前端配置实现
+     window.__gameRate ={
+         "1450011404": 1/30,
+         "1450011405": 1/10
+     };
+     window._allowMutilLoginGame = ["1450000267"]
+</script>
+<script type="text/javascript">
+    //主要用来做错误类别匹配，如果有配置关系，则前端调用ErrorUtil.matchError("1001-1001-0",res)在判断是否错误码匹配时，
+    //res.ret,res.err_code和__errorMap[res.err_code]任何一个匹配指定的错误码"1001-1001-0",都访问true,
+    //主要为了为了防止写好的前端代码如ErrorUtil.matchError("1001-1001-0",res)，在后台做了错误码映射后导致前端匹配不成功
+    window.__errorMap={
+        "1001-1001-0":"1001"
+        //res.err_code=>res.ret
+        // 理论上配置了映射关系的错误代码透传后台返回错误文案，前端可以把相关配置删除
+    };
+    //主要用于配置后台没有做错误映射的文案配置
+    window.__errorConfig = {
+        "1003-65609-65609":"此号码已绑定微信，请开通超级会员",
+        "1001-1001-0":{ msg: "请求参数错误(pf or zoneid not valid)", fix:true},
+        //结果页文案通用提示，前面有*号表示是一类错误码提示文案
+        "*65539":{ msg:"您已开通该业务的自动续费，该支付方式不支持重复购买", fix:true }
+    };
+</script>
+<script type="text/javascript">
+    var vendorTimeStart = +new Date();
+</script>
+<script type="text/javascript"   src="//midas.gtimg.cn/midas/minipay_v2/js/vendor.76c63a7b1b8a1f4234cd.js?max_age=8035200&gzip_on=1"></script>
+<script type="text/javascript">
+    var vendorTimeEnd =+new Date();
+</script>
+<script type="text/javascript"    src="//midas.gtimg.cn/midas/minipay_v2/js/app/game.1c135a98b187c961a12c.js?max_age=8035200&gzip_on=1"></script>
+
+
+<script type="text/javascript">
+    webpackJsonp([4,17],{"6":function(n,e,t){n.exports=t(2)(111001777)},"9":function(n,e,t){n.exports=t(2)(76812298)},"43811065":function(n,e,t){function i(n){this.init(n)}var o=t(4),s=t(8),a=t(122488276),r=t(5),c=t(117868480),l=t(69111116),h=l.resCouponStatus,u=l.reqCouponStatus,p=l.reqCouponTimeStatus;i.prototype.init=function(n){var e=o.fn.extract(n,["openid","openkey","sessionid","sessiontype"]);this.session=n.sessionObj||new s(e);var t=o.fn.extract(n,["appid","pf","pfkey","sandbox"]);t.sessionObj=this.session,this.cgi=new a(t),this.loadedCouponId={},this.cardInfo={},this.batchInfo={},this.channel=n.channel,this.price=n.price;var i=o.fn.getParam("zoneid")||o.fn.getParam("zoneId");this.zoneid=n.zoneid||i,this.currentPage=n.currentPage?n.currentPage:1,this.pageSize=n.pageSize,this.recommendId=null,this.supportChannel=n.supportChannel},i.prototype.setPayOptions=function(n){this.price=n.price?n.price:this.price,this.currentPage=n.currentPage?n.currentPage:this.currentPage,this.channel=n.channel?n.channel:this.channel},i.prototype.query=function(){var n=this.getQueryParams(!0),e=this;return new r(function(t,i){e.cgi.getCouponList(n,function(n){var s=parseInt(n.ret);if(0===s){var a=o.fn.safeGet(n,"mp_info.unicoupon_mpinfo"),r=e.parse(a);t(r)}else 1018===s&&e.couponService.reLogin(),i({"err_code":n.err_code,"msg":n.msg})})})},i.prototype.activate=function(n){if(!n)throw Error("Coupon should be provided to activate");var e=this;if(!o.lang.isArray(n))return this.activateSingleCoupon(n);var t=n.map(function(n){return e.activateSingleCoupon(n)});return r.all(t)},i.prototype.getRecommendId=function(){return this.recommendId},i.prototype.parse=function(n){if(!n)return[];var e=n,t=this,i=e[h.codeIdSet]||"",s=i.split(","),a=e[h.cardList];if(!a||0===a.length)return[];var r=[],l=e[h.recommend];return o.fn.each(a,function(n){var e=n[h.cardInfo],i=n[h.cardId];t.cardInfo[i]||(delete n[h.cardInfo],t.cardInfo[i]=n),o.fn.each(e,function(n){var e=n[h.batchId],s=n[h.batchInfo];t.batchInfo[e]||(delete n[h.batchInfo],t.batchInfo[e]=n),o.fn.each(s,function(n){var s=n[h.codeId],a=[s,e].join(","),u=t.getCommonInfo(i,e),p=o.fn.extend(u,n),d=new c({"id":a,"selected":!1,"price":t.price,"channel":t.channel,"supportChannel":t.supportChannel,"commonInfo":p});l==s&&(t.recommendId=a),t.loadedCouponId[a]||r.push(d),t.loadedCouponId[a]=!0})})}),r.sort(function(n,e){var t=s.indexOf(n.codeId),i=s.indexOf(e.codeId);return t>i?1:-1}),r},i.prototype.select=function(n){if("undefined"==typeof n)throw Error("Coupon must be provided");n.selected=!0},i.prototype.cancel=function(n){if("undefined"==typeof n)throw Error("Coupon must be provided");var e=o.lang.isArray(n)?n:[n];o.fn.each(e,function(n){n.selected=!1})},i.prototype.getBasicInfo=function(n){var e={"selected":n.getSelected(),"card_id":n.getCardId(),"batch_id":n.getBatchId(),"code_id":n.getCodeId(),"amt":n.getAmt(),"name":n.getName(),"logo":n.getLogo(),"least_price":n.getLeastPrice(),"allow_channel":n.getAllowChannel(),"rank_type":n.getRankType(),"end_time":n.getEndTime(),"state":n.getState()},t=Array.prototype.slice.call(arguments,1);return t.length>0&&o.fn.each(t,function(t){e[t]=n.getCommonInfo(t)}),e},i.prototype.activateSingleCoupon=function(n){var e=this.getActivateParams(n),t=this;return new r(function(i,o){var s=n.getOfferId(),a={};s&&(a.appid=s),t.cgi.revertCoupon(e,function(e){var o=parseInt(e.ret);0===o||1002215===o?(n.activate(),i({"success":!0,"coupon":n})):(1018===o&&t.couponService.reLogin(),i({"success":!1,"coupon":n}))},a)})},i.prototype.getCommonInfo=function(n,e){var t,i;n&&(t=this.getCouponCardInfo(n)),e&&(i=this.getCouponBatchInfo(e));var s=o.fn.extend({},i,t);return s},i.prototype.getCouponCardInfo=function(n,e){var t=this.cardInfo[n];return e?t[e]:t},i.prototype.getCouponBatchInfo=function(n,e){var t=this.batchInfo[n];return e?t[e]:t},i.prototype.getActivateParams=function(n){var e=this.zoneid,t=n.getOutTradeNo(),i=n.getChannelOrderId(),o=n.getPayMethod();return{"zoneid":e,"out_trade_no":t,"channel_orderid":i,"pay_method":o}},i.prototype.getQueryCouponStatus=function(n){var e="COUPON_MULTCOND;",t=o.fn.map(n,function(n){o.lang.isArray(n)||(n=[n]);var e=n[1]||p.effect;return n[0]+","+e});return e+t.join(";")},i.prototype.getQueryParams=function(n){var e=this.getQueryCouponStatus([u.available,u.used]),t="query_valid_sp_coupons",i={"action":t,"sp_status":encodeURIComponent(e),"curpage":this.currentPage,"pagesize":this.pageSize,"channel_list":this.supportChannel.join(",")};if(o.lang.isNumber(this.price)&&(i.amt=100*this.price),this.channel&&"channellist"!==this.channel&&(i.pay_method=this.channel),n){var s=o.fn.map(this.userSelectedCoupons,function(n){return n[h.codeId]+","+n[h.batchId]},this);s&&s.length>0&&(i.sp_info=encodeURIComponent(s.join(";")))}return i},i.prototype.reLogin=function(){},i.getInstance=function(n){return this.serviceInstance||(this.serviceInstance=new i(n)),this.serviceInstance},n.exports=function(n){return i.getInstance(n)}},"54218443":function(n,e,t){var i=t(4);t(1);t(66520979);var o=t(100835382),s=t(110025474),a=t(11),r=t(12),c=t(13),l=i.fn.emptyFunc,h=function(n,e,t){if(this.constructor==h)throw Error("can not  use Hfpay directly");o.apply(this,arguments),this.phoneVerifyCodeVm=null,this.vm=null,this.phoneNum=t.phoneNum,this.hfMode=t.hfMode||null,this.cgi=n.getCgi(),this.verifyCodeTimer=null,this.hfCheckRes=t.hfCheckRes,this.hfBillno=t.hfBillno,this.portalNo=t.portalNo,this.miguURL=t.miguURL,this.hfSaveRes=t.res;var i=this;window.__miguCallBack=function(n){"1"==n?i.store.onSuccess({}):r.go("order")},this.hfMode==h.MODE.MIGU&&(c.resize({"h":590}),c.trigger("resize",{"h":590}))};i.inherits(h,o),i.fn.extend(h.prototype,{"lock":function(){o.prototype.lock.call(this),this.vm.disableSubmit=!0},"unlock":function(){o.prototype.unlock.call(this),this.vm.disableSubmit=!1},"onDestroy":function(){o.prototype.removeListener.call(this),this.verifyCodeTimer&&this.verifyCodeTimer.stop(1),o.prototype.destroy.call(this)},"getVmConfig":function(){var n=this;return this.vmConfig={"$id":"hfpay-controller-complete","mode":this.mode,"hfMode":this.hfMode,"loading":!1,"getPhoneVerifyCodeVm":function(e){n.phoneVerifyCodeVm=e},"hfTips":this.getTips(),"showTips":!0,"hasSendSms":!1,"isVerifyCodeFlowQuery":!1,"disableSubmit":!1,"phoneNum":this.opts.phoneNum||"","sendSmsFlowAccessMsg":this.opts.sendSmsFlowAccessMsg||"","sendSmsFlowAccessNum":this.opts.sendSmsFlowAccessNum||"","verifyCode":"","miguURL":this.miguURL||"about:blank;","verifyCodeCountDown":"","disableVerifyCodeInput":!0,"$computed":{"isSmsVerify":{"set":i.fn.emptyFunc,"get":function(){return this.hfMode==h.MODE.SMSVERIFY}},"isMiGu":{"set":l,"get":function(){return this.hfMode==h.MODE.MIGU}},"isSmsSend":{"set":l,"get":function(){return this.hfMode==h.MODE.SMSSEND}}},"verifyCodeConfig":{"validations":[{"name":"maxlen","params":[8],"msg":"请输入正确的验证码"},{"name":"minlen","params":[3],"msg":"请输入正确的验证码"}],"filters":["number|*"]},"verifyCodeValidatePass":!1,"verifyCodeValidateMsg":"","onValidateVerifyCode":function(e){n.vm.verifyCodeValidatePass=e.passed,n.vm.verifyCodeValidateMsg=e.validation.msg},"onVerifyCodeChange":function(e){n.vm.verifyCodeValidateMsg="",n.vm.verifyCodeValidatePass=!0,n.vm.verifyCode=e},"getVerifyCode":function(e){e.preventDefault(),n.getVerifyCode()},"sendSmsFlowFinish":function(n){n.preventDefault(),console.log("send sms flow finish"),window.cashier.onPending&&window.cashier.onPending()},"handleSmsVerifyPay":function(e){e.preventDefault();var t=n.vm;t.verifyCode=n.phoneVerifyCodeVm.getValue(),t.verifyCodeValidatePass&&n.handleSmsVerifyPay(t.verifyCode)},"toggleTips":function(){n.vm.showTips=!n.vm.showTips}}},"initVm":function(){},"handleSmsVerifyPay":function(n){if(!this.isLocked()){this.lock();var e=this.store.getCgi();this.reportUser("pay.click"),e.mobileWirelessProc(i.fn.extend({"action":"hfpay_direct_pay","mobile":this.phoneNum,"sms_authcode":n,"hf_billno":this.hfBillno},this.getSmsVerifyFlowSubmitParams()),function(n){this.unlock(),~~n.ret?this.store.onFail(n):this.smsVerifyCodeFlowQuery()}.bind(this))}},"getVerifyCode":function(){if(this.hfMode==h.MODE.SMSVERIFY&&!this.vm.verifyCodeCountDown){this.verifyCodeTimer=new a.CountDown({"time":30,"beforeCount":function(){this.vm.verifyCodeCountDown="重新获取验证码"}.bind(this),"counting":function(n){this.vm.verifyCodeCountDown=String.format("{time}秒后重新获取",{"time":n})}.bind(this),"countEnd":function(){this.vm.verifyCodeCountDown=""}.bind(this)}),this.vm.hasSendSms=!0;var n=this.store.getCgi();this.reportUser("send.verify"),n.mobileWirelessProc(i.fn.extend({"type":this.getType?this.getType():this.store.type,"action":"hfpay_send_sms","buy_quantity":this.getAmount(),"mobile":this.phoneNum,"hf_billno":this.hfBillno,"portal_serial_no":this.portalNo},this.getSendSmsParams()),function(n){}.bind(this))}},"smsVerifyCodeFlowQuery":function(){this.store.onPending({"isQuery":!0,"billNo":this.hfBillno,"portalNo":this.portalNo,"buyType":this.getType(),"hfMode":this.hfMode})},"getAmount":l,"getTips":l,"getPrice":l,"getSendSmsParams":l,"getSmsVerifyFlowSubmitParams":l,"getType":l,"getVerifyCodeFlowQueryParams":l}),h.MODE={"SMSVERIFY":1,"MIGU":3,"SMSSEND":2},h.getTemplate=function(n){return n=n||{},s(n)},n.exports=h},"69111116":function(n,e){n.exports={"allAvailableChannels":["qbqd","qdqb","qqacct","qqpoint","qqwallet","wechat"],"channelMap":{"qqwallet":"QQ钱包","wechat":"微信","qdqb":"Q币","qbqd":"Q币","qqacct":"Q币","qqpoint":"Q币","qqcard":"Q卡","mcard":"充值卡","hfpay":"话费","cft":"财付通","bank":"网银","iap":"IAP"},"reqCouponStatus":{"available":"1","frozen":"9"},"reqCouponTimeStatus":{"notEffect":"NOT_EFFECT","effect":"EFFECT","expire":"EXPIRE"},"resCouponStatus":{"codeIdSet":"code_id_set","totalNum":"code_total_num","allowPayChannel":"allow_pay_channel","cardList":"coupons","recommend":"recommend","cardId":"card_id","cardInfo":"card_info","batchId":"batch_id","batchInfo":"batch_info","codeId":"code_id","leastPrice":"least_price","endTime":"endtime","beginTime":"begintime","presentTime":"present_time","payTime":"pay_time","status":"status","amt":"amt","logo":"logo","title":"title","allowOfferid":"allow_offerid","billnoWhileUsing":"billno_while_using","rankType":"rank_type"},"couponState":{"VALID":1,"DISABLE":2,"CHNOTMATCH":4,"FROZEN":8,"EXPIRED":16}}},"71187565":function(n,e,t){var i=t(4),o=t(107977805),s=function(n,e,t){o.apply(this,arguments)};i.inherits(s,o),s.prototype.onChange=function(){o.prototype.onChange.call(this),this.toSimple()},s.getTemplate=function(n){return n=n||{},o.getTemplate(n)},s.create=function(n,e,t){return new s(n,e,t)},n.exports=s},"80095251":function(n,e,t){function i(n){this.rate=10,this.mount=n.mount,this.unmount=n.unmount,this.cgi=n.cgi,this.report=n.report,this.reportUser=n.reportUser,this.uuid=n.uuid,this.portal_serial_no=n.portal_serial_no,this.onSuccess=n.onSuccess||a.noop,this.onPending=n.onPending||a.noop,this.onFail=n.onFail||a.noop,this.onNoResult=n.onNoResult||a.noop,this.onError=n.onError||a.noop,this.init()}var o=t(81121556),s=t(84117784),a=t(1),r=t(47721167),c=t(20),l=t(4),h=t(11),u=t(12),p=t(98010485);t(49140953);t(77769056);var d=t(55004913);l.fn.extend(i.prototype,{"init":function(){var n=this;this.createVm(function(){n.mount(s())})},"onDestroy":function(){this.vm=null,this.unmount()},"createVm":function(n){var e=this,t=new d({"controllerId":"result-sub-detail","loadVMConfig":function(n){n({"searchText":"查询支付结果","tryTime":e.rate,"isSearch":!1})},"callbacks":{"backHandle":function(n){n.preventDefault(),e.reportUser("back.click");try{e.timer&&e.timer.stop(1)}catch(n){}u.go("order")},"searchHandle":function(n){if(n.preventDefault(),!e.vm.isSearch){var t=function(){e.timer?e.timer.retry():e.timer=new h.CountDown({"time":e.rate,"beforeCount":function(){e.vm.isSearch=!0},"countEnd":function(){e.vm.isSearch=!1,e.vm.tryTime=e.rate,e.vm.searchText="未查询到结果，请重试"},"counting":function(n){n&&(e.vm.tryTime=n)}})};e.cgi.getPayResult({"uuid":e.uuid,"portal_serial_no":e.portal_serial_no},function(n){if(e.reportUser("search.click"),~~n.ret)t();else switch(String(n.provide_result)){case"1":e.onSuccess.bind(e)();break;default:t()}})}}}});t.on("vmReady",function(i){e.vm=t.createVm(i),n()}),t.loadVMConfig()},"destroy":function(){this.onDestroy()}});var f=t(108535814),m=function(n,e,t){t.bankType||(this.showBank=!0),f.apply(this,arguments),t.coupon&&(this.coupon=t.coupon),this.calculatePrice()};l.inherits(m,f);var g={"setupPooling":function(){var n=this;this.comet=new c({"uuid":this.opts.uuid,"sandbox":~~this.store.getSandbox(),"sessionObj":this.store.getSession(),"onSuccess":function(){n.reportUser("push.success"),n.store.onSuccess()},"onPaying":function(){}}),this.comet.start()},"createCustomResult":function(n){return this.customResult=new i(a.mix(n,{"report":this.report.bind(this),"reportUser":this.reportUser.bind(this),"uuid":this.opts.uuid,"portal_serial_no":this.opts.portal_serial_no})),this.customResult},"getVmConfig":function(){var n=this;this.showBank||this.setupPooling();var e=a.mix({},this.cacheBankData,p(this.opts.bankType,this.opts.curCardType));return a.mix({"$id":"subBank-controller","$skipArray":[],"price":this.price,"icon":"icon-"+this.opts.bank,"showBank":this.showBank,"amount":0,"$computed":{"bankClass":{"get":function(){if(this.bank)return"icon-"+this.bank}}},"bankData":a.mix({"haspaytype":!1,"bankList":JSON.stringify(window.__BANK_CONFIG)},e,{"bankType":this.opts.bankType}),"disableSubmit":!this.showBank,"tips":"","handleConfirm":function(e){e.preventDefault(),n.reportUser("confirm.click");var t={"cgi":n.store.getCgi(),"session":n.store.getSession(),"modifyTitle":!0,"channel":n.store.getChannelObj(),"titleTxt":"温馨提示","customFactory":function(e){return n.createCustomResult(e)}},i=function(){u.go("result",t)};n.store.getCgi().getPayResult({"uuid":n.opts.uuid,"portal_serial_no":n.opts.portal_serial_no},function(e){if(~~e.ret)i();else switch(parseInt(e.provide_result||"-1",10)){case 1:n.store.onSuccess();break;default:i()}})},"handleCancel":function(e){e.preventDefault(),n.reportUser("retry.click"),u.back()},"pay":function(e){e.preventDefault(),n.vm.disableSubmit||n.order(function(){n.vm.showBank=!1,n.vm.bankName=window.__BANK_CONFIG[n.bankObj.bank].name,n.vm.cardType=r.CardTypeDesc[n.bankObj.curCardType],n.setupPooling()})},"onSelectedBank":this.onSelectedBank.bind(this)},e)},"onDestroy":function(){this.comet&&this.comet.abort(),this.customResult&&this.customResult.destroy(),this.customResult=null,f.prototype.onDestroy.call(this)}};a.mix(m.prototype,g),m.create=function(n,e,t){return new m(n,e,t)},m.getTemplate=function(n){return o(n)},n.exports=m},"81058690":function(module,exports){module.exports=function(obj){obj||(obj={});var __t,__p="";with(obj)__p+='<div class="channels">\n\n    <div class="channel" ms-repeat="channels" ms-class="checked:$index==currentIndex" ms-on-click="handleClickChannel(el)">\n        <span>{{el.channelText}}</span>\n        <em ms-if="showDiscount && el.discount<1">{{el.isMinDiscount?"低至":""}}{{((el.discount)*100+\'\').replace(\'0\',\'\')+\'折\'}}</em>\n        <i class="icon-corner-checked"></i>\n    </div>\n\n    <div class="more" ms-class-1="open:showMore" ms-if="subChannels.length>0" ms-on-mouseenter="moreChannelMethod==\'hover\'&&handleMore(\'enter\',$event)"\n        ms-on-mouseleave="moreChannelMethod==\'hover\'&&handleMore(\'leave\',$event)" ms-on-click="handleClickChannel(selectedSubChannelIndex!=null? subChannels[selectedSubChannelIndex]:null,\'fromSub\')"\n        ms-on-click-1="moreChannelMethod==\'click\'&&handleMore(showMore? \'leave\':\'enter\',$event)">\n        <div class="channel" ms-class-1="checked:subChannels.indexOf(currentChannelObj)>=0">\n            <span>{{subText}}</span>\n            <em ms-if="showDiscount&&subChannelDiscount<1">{{el.isMinDiscount?"低至":""}}{{(subChannelDiscount*100+\'\').replace(\'0\',\'\')+\'折\'}}</em>\n            <i class="icon-more-arrow"></i>\n            <i class="icon-corner-checked"></i>\n        </div>\n\n        <div ms-class-1="{{\'more-channel-list\'}}" ms-class-2="{{subChannels.length<=3? \'more-channel-list--single\':\'\'}}" ms-html="radioGroup" ms-if="showMore"></div>\n        <div ms-visible="showMore && subChannels.length>3" style="position:absolute;top:0;left:-70px;width:100px;height:50px;z-index:3;background:white;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);filter: alpha(opacity=0);opacity:0">\n\n        </div>\n    </div>\n</div>';return __p}},"81121556":function(module,exports){module.exports=function(obj){obj||(obj={});var __t,__p="";with(obj)__p+='<div ms-controller="subBank-controller">\n    <div ms-visible="showBank">\n        <ms:bankselector config="bankData" on-selected-bank="onSelectedBank"></ms:bankselector>\n        <p class="choose-type tips icon-tips error" ms-if="tips!=\'\'"><i class="icon-warn"></i>{{tips}}</p>\n        <div class="oper-to-pay">\n            <a ms-on-click="pay" ms-class="btn btn-default" ms-class-1="btn-dis:disableSubmit" ms-class-2="loading:disableSubmit" href="#">\n              <span ms-if="!disableSubmit">去支付 <span>{{price}}</span>元</span>\n                <span><i class="icon-btn-loading"></i></span>\n            </a>\n        </div>\n    </div>\n    <div ms-visible="!showBank">\n        <div class="bank-card-choosed">\n            支付银行：\n            <div class="bank-box bank-box-choosed">\n                <input type="radio" class="o-radio">\n                <i class="icon-radio-checked"></i>\n                <i ms-class="icon-bank" ms-class-1="{{bankClass}}"></i>\n                <span>{{bankName}} <b>{{cardTypeName}}</b></span>\n            </div>\n        </div>\n        <div class="bank-card-paying">\n            <p>请根据您在新打开页面的操作情况选择</p>\n            <div class="btn-wrap">\n                <a type="button" class="btn btn-default" ms-on-click="handleConfirm" href="#">已完成支付</a>\n                <a type="button" class="btn btn-primary" ms-on-click="handleCancel" href="#">遇到问题，重新支付</a>\n            </div>\n        </div>\n    </div>\n</div>';return __p}},"81441166":function(module,exports){module.exports=function(obj){obj||(obj={});var __t,__p="";with(obj)__p+='<div ms-controller="qb-controller-detail">\n    <div class="recharge-result">\n        <p class="recharge-result-txt"><i class="icon-error-ml"></i>可用Q币余额不足</p>\n        <div class="left-money"><p class="tips">小主，您的QQ号(<span>{{uin}}</span>)Q币余额不足，是否充值？</p></div>\n        <div class="left-result-txt" ms-if="!searchError">\n            <p class="tips">Q币总余额：<b>{{qb_balance}}</b> Q币</p>\n            <p class="tips">Q币可用余额：<b>{{qb_used_balance}}</b> Q币\n                <a href="javascript:void(0);" class="cellphone-tooltip-trigger" ms-class-1="open:showTips" ms-on-mouseenter="showTipsHandle(true)"\n                   ms-on-mouseleave="showTipsHandle(false)">\n                    <i class="icon-info"></i>\n                    <span class="tooltip" id="tooltip">★ 可用Q币余额 = 总余额 - 钱包特惠Q币 <br> 钱包特惠Q币：即QQ钱包绑卡用户，每月可享受300Q币 92折充值优惠；特惠Q币仅限给自己充值及使用。</span>\n                </a>\n            </p>\n        </div>\n    </div>\n    <div class="oper-to-pay">\n        <button ms-if="!isWechatUser" type="button" class="btn btn-default btn-wider" ms-on-click="rechargeQB">充值Q币</button>\n        <button ms-if="isWechatUser" type="button" class="btn btn-default btn-wider" ms-on-click="switchQB">切换QQ</button>\n        <button type="button" class="btn btn-primary btn-wider" ms-on-click="backHandle">更换支付方式</button>\n    </div>\n</div>';return __p}},"82030768":function(n,e,t){var i=t(4),o=t(1),s=t(12),a=t(49140953),r=t(109735088),c=t(102521382),l=t(100835382),h=t(119792073),u=(t(105690249),t(81441166)),p=t(79091806),d=function(n,e,t){l.apply(this,arguments),this._price=t.price,this._isWechat=r.getLoginStatus().wechat,this._balanceMax=5,this.initVm(),t.coupon&&(this.coupon=t.coupon),this.calculatePrice(),this.loadBalance()};i.inherits(d,l),i.fn.extend(d.prototype,p.prototype,{"constructor":d,"getVmConfig":function(){var n=this;return{"$id":"qb-controller-detail","$skipArray":[],"price":this.price,"qb_balance":null,"searchError":!1,"qb_used_balance":null,"showTips":!1,"paying":!1,"isWechatUser":this._isWechat,"uin":this._getQBUin(),"backHandle":function(e){e.preventDefault(),s.go("order",{"refresh":{"key":h,"data":{"qqOfBalance":n.vm.uin,"balanceOfQQ":n.vm.qb_balance}}})},"rechargeQB":function(e){n.goCharge()},"showTipsHandle":function(e){n.vm.showTips=e},"switchQB":function(){n.showLoginBox(function(){n.once("pay:100004",n.loadBalance.bind(n)),n.pay({})})}}},"initVm":function(){this.vm=o.define(this.getVmConfig())},"showLoginBox":function(n){var e=this;c.init(function(){c.setCallBack({"onSuccess":function(){e._relogin=!0,e.store.setSubSession(i.cookie.get("uin"),i.cookie.get("skey")),n.call(e)}}),c.show()}.bind(this))},"loadBalance":function(n){var e=this,t=null;this._isWechat?(this._getLoginStatusFromCookie(!1),t=this._subCGI):t=this.store.getCgi(),t.getRestrictBalance({},function(t){if(~~t.ret)e._balanceMax>0?(e._balanceMax--,e.loadBalance()):e.vm.searchError=!0;else{var s=i.math.div(t.qqacct_balance,100);e.vm.searchError=!1,e.vm.qb_balance=s,e.vm.uin=e._getQBUin(),e.vm.qb_used_balance=i.math.sub(s,i.math.div(t.limit_qqacct_balance,100)),e._balanceMax=3,o.isFunction(n)&&n()}})},"_getQBUin":function(){return this._isWechat?+i.cookie.get("uin").replace(/[^\d]/g,""):this.store.getPayUin()},"_qbCookieRevert":function(){this.store.cgi.setLoginToCookie()},"_qbChargeCallBack":function(){this._qbCookieRevert(),this.vm.showBalance=!1,this.vm.balanceNotEnough=!1,this.loadBalance(function(){s.go("order",{"refresh":{"key":h,"data":{"qqOfBalance":this.vm.uin,"balanceOfQQ":this.vm.qb_balance}}})}.bind(this))},"goCharge":function(n){this.reportUser("recharge.restrict.click");var e={"appid":a.chargeQbAppid,"pf":this.store.params.pf,"pfkey":this.store.params.pfkey,"session_id":"uin","session_type":"skey","buy_quantity":Math.ceil(this._price),"recharge_other":1,"zoneid":this.store.params.zoneid,"sandbox":this.store.params.sandbox,"source_message":encodeURIComponent(this.store.getChargeMsg(this._price)),"source_from":this.store.type};this.store.params.skin&&(e.skin=this.store.params.skin),this.store.params.cft_skin&&(e.cft_skin=this.store.params.cft_skin),this._subSession?(e.openid=this._subSession.openid,e.openkey=this._subSession.openkey):(e.openid=this.store.session.openid,e.openkey=this.store.session.openkey),e.buyType="qb",i.fn.extend(e,n||{}),window.cashier&&(window.cashier.newdialog(e),this._cashierEvent||(window.cashier.on("qbchargesuccess",this._qbChargeCallBack,this),window.cashier.on("qbchargeclose",this._qbCookieRevert,this),this._cashierEvent=!0))}}),d.getTemplate=function(n){return n=n||{},u()},d.create=function(n,e,t){return new d(n,e,t)},d.HEIGHT=170,n.exports=d},"84117784":function(module,exports){module.exports=function(obj){obj||(obj={});var __t,__p="";with(obj)__p+='<div ms-controller="result-sub-detail">\n    <div class="info-area">\n        <p><i class="icon-error-m"></i>已扣款成功，但没有购买成功提示</p>\n        <p class="sub-info">由于网络传输延迟，订单信息可能尚未更新，我们会及时查询<br>并更新订单状态，请勿重新支付</p>\n        <div class="oper-area">\n            <a type="button" href="javascript:void(0);" ms-class-1="btn btn-default" ms-class-2="btn-dis:isSearch" ms-on-click="searchHandle">\n                <span ms-if="!isSearch">{{searchText}}</span><span ms-if="isSearch">{{tryTime}}秒后重新查询</span>\n                <!--<span ms-if="isSearch">-->\n                    <!--<i class="icon-btn-loading"></i>-->\n                <!--</span>-->\n            </a>\n        </div>\n    </div>\n    <div class="info-area">\n        <p><i class="icon-error-m"></i>未扣款成功，您可以继续支付</p>\n        <div class="oper-area">\n            <a type="button" class="btn btn-primary" href="javascript:void(0);" ms-on-click="backHandle">\n                <span>重新支付</span>\n            </a>\n        </div>\n    </div>\n</div>';return __p}},"87561709":function(n,e,t){t(1);t(105897990);var i=t(4),o=t(121987877),s=t(118899109),a=t(116112250),r=t(119792073),c=(t(105690249),t(109735088)),l=t(112745811),h=t(87796589),u=t(49140953),p=t(87024779).Performance,d=t(106745080),f=t(54698897),m=function(n){console.log("construct channel game store"),o.call(this,n),this.channelHandler=a};i.inherits(m,o),i.fn.extend(m.prototype,{"constructor":m,"type":l.GAME,"init":function(){o.prototype.init.call(this);try{var n=this.params,e="undefined"==typeof this.params.canChangeCount||"true"===n.canChangeCount,t=this.getReferAmt();if(!e&&t){var s=this.getDiscountPrice(),a=this.getDefaultCoupon();if(a){var r=JSON.parse(JSON.stringify(a));r.least_price=parseInt(a.getCommonInfo("least_price")),r.amt=parseInt(a.getAmt()),delete r.commonInfo}this.report("referamt.report",{"resultinfo":{"totalPrice":s,"referPrice":t,"superCouponsInfo":a&&JSON.stringify(r)}});var c=this.getCouponList();null===c.getCouponFromId(n.coupon_id)&&"object"==typeof this.getCouponList().getDefaultRecommend()&&(s=i.fn.formatFloat(100*this.getPrice().price,0,"round")),s!==t&&this.report("referamt.monitor",{"resultinfo":{"totalPrice":s,"referPrice":t}})}}catch(l){}},"getDefaultCoupon":function(){var n=this.getCouponList(),e=n.getCouponFromId(this.params.coupon_id);return e?n.getCouponFromId(this.params.coupon_id):n.getDefaultRecommend()},"getDiscountPrice":function(){return i.fn.formatFloat(100*this.getPrice(1,this.getDefaultCoupon()).price,0,"round")},"getPrice":function(n,e){var t=s(this.info,this.info.count,n,e);return t.price=parseFloat(i.math.toDecimal(t.price,2)),t},"getName":function(){return this.info.offer_name},"listenDataChange":function(){var n=this;this.on("dataChange",function(e,t){switch(e){case"count":t.provide_uin&&(this.provide_uin=t.provide_uin,n.rebindChannel()),n.info=i.fn.extend(n.info,t);var o=this.getPrice();this.toggleChannelDiscount(o.price<u.LEAST_DISCOUNT_PRICE),n.emitChange();break;case"canOrder":n._interfaceDisabled=!t.canOrder,n._channelDisableText=t.text||"请完善充值信息",n.emitChange();break;case r:n._balanceOfQQ=t.balanceOfQQ,n._QQofBalance=t.qqOfBalance,this.emit("stateChange");break;default:this.onDispatch.apply(this,arguments)}})},"onFail":function(n){o.prototype.onFail.call(this,{"type":this.type,"channel":this.currentChannel.channelObj,"buttonTxt":"更换支付方式","actionType":"back","errorCode":n.err_code||n.ret,"res":n})},"onSuccess":function(n){n=n||{};var e=this.params.resultAction;n.actionType="back"===e||"refresh"===e?"refresh":"",o.prototype.onSuccess.call(this,n)},"buy":function(n,e,t){n=n||{},n=i.fn.extend({"type":l.GAME,"game_scene":"dq_pay","pf":this.compatiblePf(this.params.pf)},this.getPublicParams(),n),this.info.role_id?n.zoneid=encodeURIComponent((i.lang.isArray(this.info.zone_id)?this.info.zone_id.slice(-1)[0]:this.info.zone_id)+"_"+this.info.role_id):this.info.zone_id&&(n.zoneid=encodeURIComponent(i.lang.isArray(this.info.zone_id)?this.info.zone_id.slice(-1)[0]:this.info.zone_id));try{n.wcp=encodeURIComponent("type=CNY&amt="+Math.round(100*this.getPrice(1,this.currentChannel.coupon).price))}catch(s){n.wcp=""}var a=f.ParamsService(this.type,this.getAppid(),this.params);a["drm_info"]&&(n["drm_info"]=a["drm_info"]),this.params.game_type==d.Type.NOHOSTING&&c.getLoginStatus().wechat&&this.getPayFor()==h.SELF&&delete n.provide_uin;var r,u;p.userTrace("timer.order.save",{"channel":this.channel}),this.cgi.webSave(n,function(t){p.userTrace("timer.order.save"),r=e(t),u=o.prototype.onBuy.call(this,n,t),r||u||(~~t.ret?(this.report("cgi.save",{"resultcode":t.ret}),this.onFail(t)):this.onSuccess({"provide_uin":this.provide_uin}))}.bind(this),t||{})},"getRcRestrictParams":function(){return{"type":"save"}}}),n.exports=m},"88748309":function(n,e,t){function i(n){n=n||{},this.isSingleChoice=n.singleChoice||!0,this.currentPage=n.currentPage||1,this.pageSize=n.pageSize||20,this.billno=n.billno;var e=r.fn.extract(n,["openid","openkey","sessionid","sessiontype"]);this.session=n.sessionObj||new a(e),this.couponService=this.getCouponService(n),this.coupons=[]}var o=t(43811065),s=t(69111116),a=t(8),r=t(4);i.prototype.parse=function(n){var e=n;if(e){var t=r.fn.safeGet(e,"mp_info.unicoupon_mpinfo");return this.coupons=this.couponService.parse(t),this.coupons}return[]},i.prototype.fetch=function(n){var e=this;return r.lang.isObject(n)&&e.setPayOptions(n),e.couponService.query().then(function(n){e.coupons=n})},i.prototype.setPayOptions=function(n){this.couponService.setPayOptions(n),r.fn.each(this.coupons,function(e){e.setPrice(n.price),e.setChannel(n.channel)}),this.refresh()},i.prototype.refresh=function(n){var e=this.coupons;"undefined"!=typeof n&&(e=[this.getCouponFromInfo(n)]),r.fn.each(e,function(n){n.parse()})},i.prototype.select=function(n){if("undefined"==typeof n)throw Error("Coupon must be provided");if(this.frozen!==!0){var e=this.getCouponFromInfo(n);if(this.isSingleChoice&&e&&!e.isDisable()){var t=this.getSelectedCoupons();this.couponService.cancel(t),this.couponService.select(e)}}},i.prototype.rollback=function(n){var e=this.coupons.filter(function(e){return e.getId()===n});return this.couponService.activate(e)},i.prototype.cancelAll=function(){var n=this,e=this.getSelectedCoupons();r.fn.each(e,function(e){n.couponService.cancel(e)})},i.prototype.activate=function(n){if("undefined"==typeof n)throw Error("Coupon must be provided");if(this.frozen!==!0){var e=this.getCouponFromInfo(n);return this.couponService.activate(e)}},i.prototype.recommend=function(n){var e=this.getDefaultRecommend(n);if(e)return e;if(n&&this.setPayOptions(n),this.hasValidCoupon()){var t=this.coupons.filter(function(n){return n.state===s.couponState.VALID}),i=Math.max.apply(null,t.map(function(n){return n.getAmt()})),o=t.filter(function(n){return n.getAmt()===i}).sort(function(n,e){return n.getEndTime()>e.getEndTime()?1:-1});return o[0]}},i.prototype.getDefaultRecommend=function(n){if(n&&this.setPayOptions(n),this.hasValidCoupon()){var e=[],t=this.couponService.getRecommendId();return t&&(e=this.coupons.filter(function(n){return n.getId()===t})),e.length>0?e[0]:null}},i.prototype.setBillingInfo=function(n,e){if("undefined"==typeof n)throw Error("Coupon must be provided");e=e||{};var t=this.getCouponFromInfo(n);t.setBillingInfo(e)},i.prototype.clear=function(){this.coupons=[]},i.prototype.freeze=function(){this.frozen=!0},i.prototype.unfreeze=function(){this.frozen=!1},i.prototype.getBasicInfo=function(n){var e,t=Array.prototype.slice.call(arguments,1);e="undefined"==typeof n||"*"===n?this.coupons:[this.getCouponFromInfo(n)];var i=r.fn.map(e,function(n){return this.couponService.getBasicInfo.apply(this,[n].concat(t))},this);return 1===i.length?i[0]:i},i.prototype.getAllCoupons=function(){return this.coupons},i.prototype.getCouponFromId=function(n){return this.getCouponFromInfo(n)},i.prototype.getSelectedCoupons=function(){var n=this.coupons.filter(function(n){return n.selected===!0});return n},i.prototype.getCouponFromInfo=function(n){return r.lang.isNumber(n)?this.coupons[n]:r.lang.isString(n)?this.coupons.filter(function(e){return e.id===n})[0]||null:n},i.prototype.hasValidCoupon=function(){return this.coupons.length>0},i.prototype.getCouponService=function(n){return o(n)},n.exports=i},"104877271":function(n,e,t){function i(n,e,t){a.apply(this,arguments)}var o=t(4),s=(t(1),t(118899109)),a=t(50980797);o.inherits(i,a),o.fn.extend(i.prototype,{"onDestroy":function(){a.prototype.onDestroy.apply(this,arguments)},"onBeforeCheck":function(){return!0},"getType":function(){return"save"},"onChange":function(){a.prototype.onChange.call(this),this.vm.hfTips=this.getTips()},"getCheckParams":function(){return{"buy_quantity":this.store.getAmount()}},"getTips":function(){var n=s(this.store.getOrderInfo(),this.store.getAmount(),this.channelObj.discount);return n.hfPrice?String.format("当前处于话费溢价状态，资费调整为 {price} 元",{"price":n.hfPrice}):""},"getPrice":function(){var n=s(this.store.getOrderInfo(),this.store.getAmount(),this.channelObj.discount);return n.hfPrice||n.price}}),i.getTemplate=function(n){return a.getTemplate(n)},i.create=function(n,e,t){return new i(n,e,t)},n.exports=i},"105690249":function(n,e){n.exports="update-balance";
+},"105897990":function(n,e,t){function i(n){this.channel=n.channel,this.discount=n.discount||1,this.showDiscount=n.showDiscount,this.channelText=n.channelText,this.isMinDiscount=n.isMinDiscount,this.height=n.height||"auto"}var o=t(4),s=t(1),a=t(87024779),r=t(81058690),c=t(49140953);t(97501907);t(11);s.component("ms:subchannels",{"$template":t(111835197)(),"$extend":"radiogroup","$replace":!0,"$parent":null,"radioId":"","radioList":[],"$init":function(n,e){n.$parent=s.components["ms:radiogroup"],s.components["ms:radiogroup"].$init(n,e)},"$dispose":function(n){n.$parent.$dispose(n),n.$parent=null},"handleClick":function(){s.components["ms:radiogroup"].handleClick.apply(this,arguments)}}),s.component("ms:channelselector",{"$template":r(),"$skipArray":["radioGroupConfig"],"data":{},"$replace":!0,"showMore":!1,"currentIndex":null,"currentChannelObj":null,"subText":"更多方式","showDiscount":!0,"subChannelDiscount":1,"isMinDiscount":!1,"radioGroupConfig":{"radioList":[],"index":null},"timeOut":null,"moreChannelMethod":"hover","radioGroup":"","subChannels":[],"selectedSubChannelIndex":null,"channels":[],"onSelectChannel":s.noop,"handleClickChannel":function(n,e,t){if("fromSub"!=e)this.handleMore("leave"),this.currentIndex=this.channels.indexOf(n),this.currentChannelObj&&n.channel!=this.currentChannelObj.channel&&a(String.format("channel.index.{index}.click",{"index":this.currentIndex+1}),{"action":n.channel});else{if(!n)return;this.currentIndex=null,this.subText=n.channelText,this.subChannelDiscount=n.showDiscount||n.discount,this.isMinDiscount=n.isMinDiscount}this.setCurrent.call(this,n,t)},"addMore":function(){this.radioGroup=null,s.nextTick(function(){this.radioGroup='<ms:subchannels config="radioGroupConfig" on-change="onSubChannelChange"></ms:subchannels>'}.bind(this))},"onSubChannelChange":function(n,e){this.selectedSubChannelIndex=e,this.radioGroupConfig.index=e,this.handleMore("leave"),this.handleClickChannel(this.subChannels[e],"fromSub")},"triggerSelectChannel":function(n,e){var t="",i=this.channels.filter(function(e){return e.channel==n});if(0==i.length){var t="fromSub",o=this;this.subChannels.some(function(e,t){if(e.channel==n)return o.radioGroupConfig.index=t,i=[e],!0})}i.length>0&&this.handleClickChannel(i[0],t,e)},"handleMore":function(n){"enter"==n?(a("channel.index.more.click"),this.addMore(),this.showMore=!0):"leave"==n&&(this.showMore=!1)},"init":function(n){n.subChannels=[],n.channels=[],n.currentChannelObj=null,s.each(n.data.channels,function(e,t){if(c.channels.hasOwnProperty(t.name)&&c.channels[t.name].status){var s=new i({"channel":t.name,"visible":t.visible,"channelText":c.channels[t.name].name,"showDiscount":o.fn.formatFloat(o.math.div(t.showDiscount||t.discount,100),2,"round"),"discount":o.fn.formatFloat(o.math.div(t.showDiscount||t.discount,100),2,"round"),"isMinDiscount":t.isMinDiscount,"height":t.height});n.channels.length>=3&&4!=n.data.channels.length?n.subChannels.push(s):n.channels.push(s),n.subChannels.length>0&&(n.subText="更多方式")}}),n.radioGroupConfig.radioList=n.subChannels.map(function(n){return{"name":n.channelText,"value":n.channel,"showDiscount":n.showDiscount,"isMinDiscount":n.isMinDiscount,"discount":n.showDiscount||n.discount}}.bind(n));var e=null;if(n.data.defaultChannel){var t;n.channels.some(function(e,i){if(e.channel==n.data.defaultChannel)return t=i,!0})?(n.handleClickChannel.call(n,n.channels[t]),e=n.channels[t]):n.subChannels.some(function(e,i){if(e.channel==n.data.defaultChannel)return t=i,!0})?(n.radioGroupConfig.index=t,n.addMore(),n.handleClickChannel.call(n,n.subChannels[t],"fromSub"),e=n.subChannels[t]):(n.handleClickChannel.call(n,n.channels[0]),e=n.channels[0])}else n.handleClickChannel.call(n,n.channels[0]),e=n.channels[0]},"$init":function(n){n.init.call(n,n),n.$watch("data",function(e){s.nextTick(function(){this.init(this)}.bind(n))})},"setCurrent":function(n,e){!e&&this.currentChannelObj&&n.channel==this.currentChannelObj.channel||(this.currentChannelObj=n,this.onSelectChannel(this.currentChannelObj))}}),n.exports={"create":function(n,e){return e=e||{},String.format('<ms:channelselector config="{dataName}"on-select-channel="{onSelectChannel}"></ms:channelselector>',{"dataName":n,"onSelectChannel":e.selectChannelMethod||"onSelectChannel"})}}},"106745080":function(n,e){n.exports={"Type":{"HOSTING":"default","NOHOSTING":"duanyou","MOBILE":"shouyou"},"CheckType":{"NOCheck":0,"CHECK":1,"CHECKRole":2,"SELECTRole":3}}},"107540370":function(n,e,t){var i=t(1),o=window.__errorConfig||{},s=t(49140953),a=window.__errorMap||{};n.exports={"matchError":function(n,e,t){var i=String(e.err_code),o=String(e.ret),s=!1;return Array.isArray(n)?(s=n.indexOf(i)!==-1||n.indexOf(o)!==-1,s||(n.forEach(function(e,t){n[t]=a[e]||e}),s=n.indexOf(o)!==-1)):s=t?i.indexOf(n)!==-1||o.indexOf(n)!==-1:n==i||n==o||o==a[n],s},"errorMsg":function(n,e){var t=String(e.err_code),a=String(e.ret),r=String.format("{msg}（{code}）",{"code":e.err_code||e.ret||null,"msg":e.err_code?s.TEXT.COMMONERRORTXT:e.msg||s.TEXT.COMMONERRORTXT}),c=o[n]||o[t]||o[a]||o["*"+n];return c&&("object"!==i.type(c)&&(c={"msg":c}),c.fix?r=c.msg:n==t&&(r=c.msg||e.msg)),r}}},"107977805":function(n,e,t){var i=t(4),o=t(1);t(66520979);var s=t(100835382),a=t(117821206),r=(t(43847285),t(110580809)),c=t(66520979),l=t(84811753),h=t(75748174),u=(t(43847285),[10,20,30,50,100]),p={"RIGHTNUM":"请输入正确的充值卡卡号","RIGHTPASS":"请输入正确的充值卡密码"},d=function(n,e,t){s.apply(this,arguments),this.numVm=null,this.passVm=null,this.vm=null,this.mode=s.MODE.COMPLETE,this.initVm(),this.billNo=null,this.portalNo=null};i.inherits(d,s),i.fn.extend(d.prototype,{"constructor":d,"onDestroy":function(){s.prototype.removeListener.call(this),s.prototype.destroy.call(this)},"lock":function(){s.prototype.lock.call(this),this.vm.disableSubmit=!0},"onChange":function(){this.vm&&(this.vm.price=this.store.getPrice(this.channelObj.discount).price,this.store.isNewMcard()&&(this.vm.directpay=parseFloat(this.vm.balance)>=this.vm.price),this.vm.amount=this.store.getAmount())},"unlock":function(){s.prototype.unlock.call(this),this.vm.disableSubmit=!1},"onBeforePay":function(){return!0},"onSelectCardfaceAfter":function(){},"getVmConfig":function(){var n=this;return this.vmConfig={"$id":"mcard-controller-"+this.mode,"$skipArray":[],"showTooltip":!1,"amount":this.store.getAmount(),"balance":null,"directpay":!1,"cardface":u.slice(0,u.length),"needCardface":!1,"cardfaceTips":!1,"tips":"请选择与充值卡对应的面额","cardNum":"","passNum":"","cardNumMsg":"","cardPassMsg":"","cardNumValidatePass":!1,"cardPassValidatePass":!1,"disableSubmit":!1,"cardfaceIndex":null,"selectedCardface":null,"isNewMcard":this.store.isNewMcard(),"price":this.store.getPrice(this.channelObj.discount).price,"$computed":{"diffMoney":{"set":o.noop,"get":function(){return null==this.price||null==this.balance?null:parseFloat(this.balance)>=parseFloat(this.price)?null:i.math.toDecimal(i.math.sub(this.price,this.balance),2)}}},"onSelectCardface":function(e,t){console.log("select card face ",t);var i=n.vm;i.cardfaceIndex=e,i.selectedCardface=t,n.onSelectCardfaceAfter()},"toggleTooltip":function(){n.vm.showTooltip=!n.vm.showTooltip},"showCardface":function(){n.vm.needCardface=!0},"hideCardface":function(){n.vm.needCardface=!1},"getNumVm":function(e){n.numVm=e},"getPassVm":function(e){n.passVm=e},"cardNumberConfig":{"filters":["number|*"],"validations":[{"name":"maxlen","params":[40],"msg":p.RIGHTNUM},{"name":"minlen","params":[15],"msg":p.RIGHTNUM}],"maskcfg":c.masks.space},"cardPassConfig":{"filters":["number|*"],"validations":[{"name":"maxlen","params":[40],"msg":p.RIGHTPASS},{"name":"minlen","params":[15],"msg":p.RIGHTPASS}],"maskcfg":c.masks.space},"pay":function(e){if(console.log("click pay"),e.stopPropagation(),e.preventDefault(),0!=n.store.getAmount()){if(n.store.isInterfaceDisabled())return void n.store.emit("channelDataChange",new l(h));n.vm.cardNum=n.numVm.getValue(),n.vm.passNum=n.passVm.getValue();var t=n.vm.cardNumValidatePass&&n.vm.cardPassValidatePass;n.vm.needCardface&&n.vm.selectedCardface;if(t){if(n.vm.needCardface&&!n.vm.selectedCardface)return void(n.vm.cardfaceTips=!0);console.log("before qcard pay");var o={"pay_id":n.vm.cardNum,"auth_key":n.vm.passNum,"isusempaymode":n.store.isNewMcard()?"1":"0","pay_method":n.channelObj.channel};n.onBeforePay()&&(n.vm.needCardface&&i.fn.extend(o,{"card_value":100*n.vm.selectedCardface}),n.reportUser("complex.pay.click"),n.buy(o))}}},"onCardNumValidate":function(e){console.log("card num validation fail ",e.validation),n.vm.cardNumMsg=e.validation.msg,n.vm.cardNumValidatePass=e.passed},"onCardPassValidate":function(e){n.vm.cardPassMsg=e.validation.msg,n.vm.cardPassValidatePass=e.passed},"oncardNumChange":function(e){n.vm.cardNumMsg="",n.vm.cardNumValidatePass=!0},"oncardPassChange":function(e){n.vm.cardPassMsg="",n.vm.cardPassValidatePass=!0}}},"initVm":function(){this.vm=o.define(this.getVmConfig()),this.vm.showCardface(),this.store.isNewMcard()&&(this.vm.balance=this.store.getMcardBalance()),this.resize()},"resize":function(){this.store.emit("channelResize",d.HEIGHT)},"toSimple":function(){this.vm.directpay&&this.store.onSelectChannel(this.channelObj,{"mode":s.MODE.SIMPLE})},"buy":function(n){this.isLocked()||(console.log("mcard buy params:",n),this.lock(),this.showMask(),this.store.buy(n,function(e){return this.hideMask(),this.handlerBuy(e,n)}.bind(this)))},"handlerBuy":function(n,e){e=e||{};var t=this;if(~~n.ret){var i=new a({"errCode":~~n.ret,"errMsg":n.msg,"oriParams":e,"1413":function(){console.log("mcard need choose card face"),t.vm.showCardface()}});return i.canHandle()?(i.exec(),!0):(t.unlock(),!1)}t.unlock(),this.billNo=n.info.billno,this.portalNo=n.info.portal_serial_no;({"billNo":n.info.billno,"portalNo":n.info.portal_serial_no});return this.store.onPending({"isQuery":!0,"titleTxt":"结果查询中","billNo":n.info.channel_orderid,"portalNo":n.info.portal_serial_no}),!0}}),d.getTemplate=function(n){return n=n||{},n.mode=n.mode||s.MODE.COMPLETE,r({"mode":n.mode})},d.create=function(n,e,t){return new d(n,e,t)},d.HEIGHT=268,n.exports=d},"110025474":function(module,exports){module.exports=function(obj){obj||(obj={});var __t,__p="";with(obj)__p+='<div ms-controller="hfpay-controller-complete" class="telephone-fee-pay-area">\n    <div ms-if="!loading && !isVerifyCodeFlowQuery">\n        <div ms-if="isSmsVerify" class="form-inline">\n            <p class="tips">短信验证码已发送至 <em>{{phoneNum.substr(0,3)}} {{phoneNum.substr(3,4)}} {{phoneNum.substr(7,4)}}</em> ，请填写验证码完成支付</p>\n            <div style="display: block;" class="send-secur-code">\n                <div style="display:inline-block;margin-bottom: 10px;*display:inline;*zoom:1;">\n                    <ms:input on-init="getPhoneVerifyCodeVm"\n                              maxlength="8"\n                              on-validate="onValidateVerifyCode"\n                              config="verifyCodeConfig"\n                              on-change="onVerifyCodeChange"\n                              placeholder="请输入验证码"\n                              extra-container-class="form-combined"\n                    ></ms:input>\n                </div>\n                <a style="width:100px;display:inline-block;*display:inline;*zoom:1;text-align: center;" class="form-btn" ms-on-click="getVerifyCode"\n                        ms-attr-disabled="!!verifyCodeCountDown">{{verifyCodeCountDown||\'获取验证码\'}}\n                </a>\n                <p class="tips icon-tips warn" style="position: relative" ms-if="verifyCodeValidateMsg">\n                    <i class="icon-warn"></i>\n                    {{verifyCodeValidateMsg}}\n                </p>\n            </div>\n            <div class="oper-to-pay">\n                <a ms-on-click="handleSmsVerifyPay" ms-class="btn btn-default" ms-class-1="loading:disableSubmit" href="#">\n                    <span ms-if="!disableSubmit">确认支付</span>\n                    <span><i class="icon-btn-loading"></i></span>\n                </a>\n            </div>\n        </div>\n        <div ms-if="isSmsSend">\n            <p class="tips">请使用号码为 <em>{{phoneNum.substr(0,3)}} {{phoneNum.substr(3,4)}} {{phoneNum.substr(7,4)}}</em> 的手机，按照以下指引操作</p>\n            <ol class="duandai-steps">\n                <li><span class="order">1</span>请编辑发送短信  {{sendSmsFlowAccessMsg}}  到{{sendSmsFlowAccessNum}}</li>\n                <li><span class="order">2</span>发送后您将收到一条手机短信，请回复并确认开通结果。</li>\n            </ol>\n            <div class="oper-to-pay">\n                <a type="button" ms-on-click="sendSmsFlowFinish" href="#" class="btn btn-default">完成</a>\n            </div>\n        </div>\n        <div ms-if="isMiGu">\n            <iframe id="hfpay-migu" frameborder="0" scrolling="no" width="550px;" height="590px;" ms-attr-src="miguURL"></iframe>\n        </div>\n    </div>\n    <div ms-if="isVerifyCodeFlowQuery">\n\n    </div>\n    <div class="warm-prompt" ms-if="!isMiGu&&hfTips" ms-class-1="open:showTips">\n        <h4 ms-on-click="toggleTips" ><i class="icon-info"></i>温馨提示 <i class="icon-arrow"></i></h4>\n        <div ms-html="hfTips">\n\n        </div>\n    </div>\n</div>';return __p}},"110580809":function(module,exports){module.exports=function(obj){obj||(obj={});var __t,__p="";with(obj)__p+='<div ms-controller="mcard-controller-'+(null==(__t=mode)?"":__t)+'">\n    <div>\n        <div class="left-money-warn" ms-if="balance!=null">\n            <div class="cellphone-info">\n                <p>手机充值卡账户余额：<span><em class="left-money-em">{{balance}}</em>元</span>\n                    <a class="cellphone-tooltip-trigger" style="vertical-align: middle" ms-class-1="open:showTooltip" ms-on-mouseenter="toggleTooltip" ms-on-mouseleave="toggleTooltip">\n                        <i class="icon-info"></i>\n                        <span ms-show="showTooltip" class="tooltip">手机充值卡将一次性销卡，请选择与卡面额对应的面值，若有金额剩余，将以手机充值卡账户余额的形式保留，供下次使用该渠道支付时使用。例如余额:5元，订单金额：10元，使用20元充值卡支付完成后会有15元存入手机充值卡账户余额。</span>\n                    </a>\n                </p>\n            </div>\n            <!--<p class="tips sub-tips" ms-if="diffMoney">还差 {{diffMoney}}元，请充值</p>-->\n        </div>\n        <!--<div class="left-money-warn">-->\n        <!--<div class="cellphone-info">-->\n        <!--<p>手机充值卡账户余额：<span><em class="left-money-em">0</em>元</span>-->\n        <!--<a href="javascript:;" class="cellphone-tooltip-trigger">-->\n        <!--<i class="icon-info"></i>-->\n        <!--<span class="tooltip" id="tooltip">手机充值卡将一次性销卡，请选择与卡面额对应的面值，若有金额剩余，将以手机充值卡账户余额的形式保留，供下次使用该渠道支付时使用。例如余额:5元，订单金额：10元，使用20元充值卡支付完成后会有15元存入手机充值卡账户余额。</span>-->\n        <!--</a>-->\n        <!--</p>-->\n        <!--</div>-->\n        <!--<p class="tips sub-tips">还差 30元，请充值</p>-->\n        <!--</div>-->\n        <div class="input-areas" style="margin-bottom: 0;">\n            <div class="input-row" style="display: block;margin-bottom: 10px">\n                <ms:input on-init="getNumVm" placeholder="请输入充值卡卡号" maxlength="40" on-validate="onCardNumValidate" config="cardNumberConfig" on-change="oncardNumChange" width="240px"></ms:input>\n                <p class="tips icon-tips warn" ms-if="cardNumMsg">\n                    <i class="icon-warn"></i> {{cardNumMsg}}\n                </p>\n            </div>\n\n            <div class="input-row" style="margin-bottom: 10px">\n                <ms:input on-init="getPassVm" placeholder="请输入充值卡密码" maxlength="40" config="cardPassConfig" on-validate="onCardPassValidate" on-change="oncardPassChange" width="240px"></ms:input>\n                <p class="tips icon-tips warn" ms-if="cardPassMsg">\n                    <i class="icon-warn"></i> {{cardPassMsg}}\n                </p>\n            </div>\n\n\n\n        </div>\n        <div class="input-areas" ms-if="!isNewMcard">\n            <p class="tips sub-tips" ms-html="tips"></p>\n        </div>\n        <div class="input-areas input-row" ms-if="needCardface && cardface.length>0" style="position: relative">\n            <div class="recharge-cards" style="margin-bottom: 5px">\n                <div ms-repeat="cardface" class="recharge-card" ms-class-1="recharge-active:cardfaceIndex==$index" ms-on-click="onSelectCardface($index,el)">\n                    {{el}}元\n                </div>\n            </div>\n            <p class="tips icon-tips error" ms-if="cardfaceTips && !selectedCardface">\n                <i class="icon-warn"></i> 请选择充值卡面额\n            </p>\n        </div>\n        <div class="oper-to-pay">\n            <a ms-on-click="pay" ms-class="btn btn-default"  ms-class-1="loading:disableSubmit" ms-class-2="btn-dis:disableSubmit||amount==0" href="#">\n              <span ms-if="!disableSubmit">确认支付 <span>{{price}}</span>元</span>\n                <span><i class="icon-btn-loading"></i></span>\n            </a>\n        </div>\n    </div>\n</div>';return __p}},"111835197":function(module,exports){module.exports=function(obj){obj||(obj={});var __t,__p="";with(obj)__p+='<div>\n    <div class="more-channel radio-box" style="margin-right: 0" ms-class-1="checked:$index==index" ms-repeat="radioList" ms-on-click="handleClick($index,$event)">\n        <label ms-attr-for="radioId">\n            <input type="radio" class="o-radio" name="bank" ms-attr-checked="$index==index" >\n            <i class="icon-radio"></i>\n            <span>{{el.name}}</span>\n            <em ms-if="showDiscount && el.discount<1">{{((el.showDiscount||el.discount)*100+\'\').replace(\'0\',\'\')+\'折\'}}</em>\n        </label>\n    </div>\n</div>';return __p}},"113498514":function(n,e,t){function i(n,e,t){a.apply(this,arguments),this.initVm()}var o=t(4),s=t(1),a=t(54218443);o.inherits(i,a),o.fn.extend(i.prototype,{"onDestroy":function(){a.prototype.onDestroy.apply(this,arguments)},"getVmConfig":function(){return this.vmConfig=o.fn.extend({},a.prototype.getVmConfig.call(this),{})},"initVm":function(){this.vm=s.define(this.getVmConfig()),this.getVerifyCode()},"getType":function(){return"save"},"getTips":function(){return""},"getSendSmsParams":function(){return{"buy_quantity":this.store.getAmount()}}}),i.getTemplate=function(n){return a.getTemplate(n)},i.create=function(n,e,t){return new i(n,e,t)},n.exports=i},"116022316":function(module,exports){module.exports=function(obj){obj||(obj={});var __t,__p="";with(obj)__p+='<div ms-controller="channel" class="pay-area" style="min-height:100px;">\n    <div class="pay-area-header" ms-visible="showChannel" id="channelSelectWrap" style="position: relative;*zoom:1;min-height: 60px;">\n        <h3 class="pay-title">\n            支付方式：<p class="tips icon-tips" ms-if="showMonthTips">连续包月不支持Q币，如需使用 <span style="color: red">Q币</span> 等更多支付方式，请选择其他月份套餐</p>\n        </h3>\n        <ms:channelselector $id="channelSelector" more-channel-method="hover" config="channelSelectorConfig" on-select-channel="selectChannelMethod"></ms:channelselector>\n    </div>\n    <div class="pay-area-body" style="position: relative;*zoom:1;" ms-css-height="height">\n        <div  style="position: absolute;top:0;left:0;width: 100%;">\n            <div ms-visible="channelIsNeedCached" id="channelListWrap" class="channel-detail"></div>\n            <div ms-if="!channelIsNeedCached" class="channel-detail" ms-html="selectedChannelDetail"></div>\n            <div id="channelDetailExtraArea"></div>\n        </div>\n    </div>\n</div>';return __p}},"116112250":function(n,e,t){var i=t(100835382),o=(t(48517300),{"wechat":function(n,e){var i=t(79488087);return{"tpl":i.getTemplate(),"channelInstance":i.create(n,e)}},"qqwallet":function(n,e){var i=t(89561790);return{"tpl":i.getTemplate(),"channelInstance":i.create(n,e)}},"pcbank":function(n,e,o){var s=t(o.mode==i.MODE.COMPLETE?80095251:108535814);return{"tpl":s.getTemplate(),"channelInstance":s.create(n,e,o)}},"qbqd":function(n,e,o){var s=t(i.MODE.COMPLETE==o.mode?82030768:79091806);return{"tpl":s.getTemplate(o),"channelInstance":s.create(n,e,o)}},"qdqb":function(n,e,t){return o.qbqd(n,e,t)},"qqacct":function(n,e,t){return o.qbqd(n,e,t)},"qqpoint":function(n,e,t){return o.qdqb(n,e,t)},"qqcard":function(n,e,o){o=o||{};var s=t(43820868),a=o.mode||i.MODE.COMPLETE;return{"tpl":s.getTemplate({"mode":a}),"channelInstance":s.create(n,e,{"mode":a})}},"mcard":function(n,e,o){var s=t(o.mode==i.MODE.COMPLETE?71187565:122741454);return{"tpl":s.getTemplate(o),"channelInstance":s.create(n,e,o)}},"pccft":function(n,e,i){var o=t(123135374);return{"tpl":o.getTemplate(i),"channelInstance":o.create(n,e,i)}},"hfpay":function(n,e,o){var s=t(o.mode==i.MODE.COMPLETE?113498514:104877271);return{"tpl":s.getTemplate(o),"channelInstance":s.create(n,e,o)}},"friendpay":function(n,e,i){var o=t(104708884);return{"tpl":o.getTemplate(i),"channelInstance":o.create(n,e,i)}}});n.exports=o},"117868480":function(n,e,t){function i(n){n=n||{},this.today=n.today||new Date,this.selected=n.selected,this.setPrice(n.price),this.id=n.id,this.setChannel(n.channel),this.state=h.VALID,this.commonInfo=n.commonInfo,this.standardizeTime(),this.getAllowChannel(),this.parse()}var o=t(4),s=t(69111116),a=s.allAvailableChannels,r=s.channelMap,c=s.resCouponStatus,l=s.reqCouponStatus,h=(s.reqCouponTimeStatus,s.couponState);i.prototype.getCommonInfo=function(n){return this.commonInfo[n]},i.prototype.setCommonInfo=function(n,e){this.commonInfo[n]=e},i.prototype.setChannel=function(n){this.channel=n},i.prototype.setPrice=function(n){this.price=n},i.prototype.parse=function(){this.parseState();var n=this.getCommonInfo(c.billnoWhileUsing);this.billingInfo=this.parseBillingInfo(n)||{}},i.prototype.activate=function(){this.setCommonInfo(c.status,l.available),this.parseState()},i.prototype.unactivate=function(){this.setCommonInfo(c.status,l.frozen),this.parseState()},i.prototype.parseBillingInfo=function(n){if(n){var e=n.replace(/;\s*$|\s*/g,"").split(";").map(function(n){var e=n.split(",");return[e[0],e[1]]}),t={"roc_oid":"outTradeNo","paychannel":"payMethod","offerid":"offerid","channel_orderid":"channelOrderId"},i={};return o.fn.each(e,function(n){var e=n[0],o=n[1];e in t&&(i[t[e]]=o)}),i}},i.prototype.parseState=function(){this.state=0;var n=parseInt(this.getCommonInfo(c.leastPrice)),n=(this.getAllowChannel(),this.getLeastPrice()),e=this.isExpired(),t=this.getCommonInfo(c.status)===l.frozen,i=o.lang.isNumber(this.price)&&this.price<n,s=this.isChannelMismatch(),a={"EXPIRED":e,"FROZEN":t,"DISABLE":i,"CHNOTMATCH":s,"VALID":!(e||t||i||s)},r=this;o.fn.each(a,function(n,e){r.state+=n?h[e]:0}),this.description=String.format("满{leastPrice}元可用",{"leastPrice":n})},i.prototype.standardizeTime=function(){this.setCommonInfo(c.endTime,1e3*this.getCommonInfo(c.endTime)),this.setCommonInfo(c.beginTime,1e3*this.getCommonInfo(c.beginTime)),this.setCommonInfo(c.payTime,1e3*this.getCommonInfo(c.payTime)),this.setCommonInfo(c.presentTime,1e3*this.getCommonInfo(c.presentTime))},i.prototype.standardizePayChannel=function(n){var e=o.lang.isString(n)?n.split(","):n,t={"qbqd":"qbqd","qdqb":"qdqb","qqacct":"qqacct","qqpoint":"qqpoint"},i=e.map(function(n){return n in t?t.qbqd:n}).filter(function(n,e,t){return t.indexOf(n)===e});return i},i.prototype.isNearEnd=function(){if(this.isExpired())return!1;var n=this.today?new Date(this.today).getTime():(new Date).getTime(),e=432e6,t=this.getCommonInfo(c.endTime);return t-n<e},i.prototype.getEndDate=function(){if(this.endDate)return this.endDate;var n=new Date(this.getCommonInfo(c.endTime));return this.endDate=[n.getFullYear(),n.getMonth()+1,n.getDate()].join("-")},i.prototype.toYuan=function(n){return n/100},i.prototype.getAllowChannel=function(){if(void 0!==this.allowChannelInfo)return this.allowChannelInfo;var n=[];if(this.isAllChannelCoupon())return this.allowChannelInfo="*",this.allowChannelInfo;var e=this.getCommonInfo(c.allowPayChannel)||"",t=this.standardizePayChannel(e),n=t.map(function(n){return r[n]});return this.allowChannelInfo={"channelCode":t,"channelName":n},this.allowChannelInfo},i.prototype.isExpired=function(){var n=this.today?new Date(this.today).getTime():(new Date).getTime();return n>this.getCommonInfo(c.endTime)},i.prototype.isChannelMismatch=function(){var n=this.getAllowChannel();return"*"!==n&&(null!=this.channel&&n.channelCode.indexOf(this.channel)===-1)},i.prototype.isChannelSpecial=function(){return!this.isAllChannelCoupon()},i.prototype.isAllChannelCoupon=function(){var n=this.getCommonInfo(c.allowPayChannel)||"",e=this.standardizePayChannel(n),t=this.standardizePayChannel(a),i=t.every(function(n){return e.indexOf(n)!==-1})||"*"===n;return i},i.prototype.setBillingInfo=function(n){o.fn.extend(this.billingInfo,n)},i.prototype.getSelected=function(){return this.selected},i.prototype.isValid=function(){return!!(this.state&h.VALID)},i.prototype.isDisable=function(){return!!(this.state&h.DISABLE)},i.prototype.isChNotMatch=function(){return!!(this.state&h.CHNOTMATCH)},i.prototype.isFrozen=function(){return!!(this.state&h.FROZEN)},i.prototype.isExpired=function(){return!!(this.state&h.EXPIRED)},i.prototype.getPayMethod=function(){return this.billingInfo.payMethod},i.prototype.getOutTradeNo=function(){return this.billingInfo.outTradeNo},i.prototype.getChannelOrderId=function(){return this.billingInfo.channelOrderId},i.prototype.getOfferId=function(){return this.billingInfo.offerid},i.prototype.getEndTime=function(){return this.getCommonInfo(c.endTime)},i.prototype.getCodeId=function(){return this.getCommonInfo(c.codeId)},i.prototype.getBatchId=function(){return this.getCommonInfo(c.batchId)},i.prototype.getCardId=function(){return this.getCommonInfo(c.cardId)},i.prototype.getId=function(){return this.id},i.prototype.getTips=function(){return decodeURIComponent(this.tips||"")},i.prototype.getState=function(){return this.state},i.prototype.getAmt=function(){var n=this.getCommonInfo(c.amt);return this.toYuan(n)},i.prototype.getLogo=function(){return this.getCommonInfo(c.logo)},i.prototype.getName=function(){return decodeURIComponent(this.getCommonInfo(c.title))},i.prototype.getDescription=function(){return this.description||""},i.prototype.getLeastPrice=function(){var n=this.getCommonInfo(c.leastPrice);return this.toYuan(n)},i.prototype.getRankType=function(){return this.getCommonInfo(c.rankType)},n.exports=i},"118899109":function(n,e,t){var i=t(4);n.exports=function(n,e,t,o){var s=i.math.div(1,parseFloat(n.rate)),a=!!n.hf_rate,r=a?i.math.div(1,~~n.hf_rate):0,c=i.math.mul(s,e);c=i.math.sub(c,o&&!o.isDisable()?o.getAmt():0);var l=i.math.mul(r,e);"undefined"!=typeof t&&t<1&&(c=i.math.mul(c,t),l=i.math.mul(l,t)),c<=.01&&(c=.01),a&&l<.01&&(l=.01),0==e&&(c=l=0);var h={"showDiscount":!0,"uniPrice":s,"price":c};return a&&i.fn.extend(h,{"hfPrice":l,"hfUnitPrice":r}),h}},"119792073":function(n,e){n.exports="balance-change"},"120688004":function(n,e){n.exports="amount-change"},"121987877":function(n,e,t){var i=t(4),o=t(17),s=t(12),a=t(49140953),r=t(116022316),c=t(44017488),l=t(120688004),h=t(104491903),u=t(13),p=t(87796589),d=t(84811753),f=t(70127470),m=t(72074753),g=t(72876602),v=t(107540370),C=t(87024779),b=t(88748309),y=t(112745811),_=t(8),S=t(109735088),w=t(83058212),I=function(n){return[m.KJ].indexOf(n)>-1},x=function(n){this.opts=n||{},o.call(this),this.info=n.info,this.session=n.session,this.subSession=n.subSession,this.cgi=n.cgi,this.params=n.params||{},this.provide_uin=n.provide_uin||"",this.provide_name=n.provide_name||"",this.currentChannel=null,this.subCurrentChannel=null,this.supportChannelList=[],this.current_coupon=null,this.channel=this.params.channel,this._balanceOfQQ=null,this._QQofBalance=null,this.friendList=null,this.channelHandler=null,this._interfaceDisabled="undefined"!=typeof n.interfaceDisabled&&n.interfaceDisabled,this._channelDisableText="",this.resultStatus="",this.destroyCloseTips=null,this.on("destroy-channel",function(){console.log("destroy channel"),this.destroySubChannel()}.bind(this)),this.on("channelDataChange",function(n){if(!(n instanceof d))throw Error("action must be instance of Action");switch(n.getType()){case c:var e=!n.getData().showBindCard;this.vm.showChannel=e,this.emit(c,n);break;case h:this.emit(h,n);break;case l:this.emit(l,n)}})};i.inherits(x,o),i.fn.extend(x.prototype,{"hasBindCard":function(){return"1"==this.info.is_kj},"type":"","queryBalance":function(n){this.cgi.webBuyPage({},function(e){n(~~e.ret?!1:{"balance":i.math.div(e.info.qqacct_balance,100)})})},"getBalanceInfo":function(){return{"balanceOfQQ":this._balanceOfQQ,"QQofBalance":this._QQofBalance}},"reportUser":function(n,e,t){C.user.action(n,e,t)},"report":function(n,e){C(n,e)},"getPrice":function(){return{"price":0,"unitPrice":0}},"getChannelObj":function(){return this.currentChannel?this.currentChannel.channelObj:{}},"getHfAllowAmt":function(){return this.info.hf_amt_allow},"getAmount":function(){return this.info.count},"getTargetInfo":function(){return{"uin":this.getProvideUin(),"name":this.provide_name}},"getPayFor":function(){return this.getProvideUin()?this.getPayUin()==this.getProvideUin()?p.SELF:p.SEND:p.SELF},"getWxAppid":function(){return"1"==this.params.usepay_wxappid?"1":a.wxAppid},"getProvideUin":function(){return this.provide_uin},"getReferAmt":function(){var n=this.params.refer_amt;if(!n)return null;var n=parseInt(n);return n>0?"false"==this.params.canChangeCount&&"true"!=this.params.showRecommend?n:this.opts.type==y.GOODS&&1==this.info.appmode?n:null:null},"getPublicParams":function(){var n="";!this.buyForSelf()&&S.getLoginStatus().qq&&(n=this.getProvideUin());var e={"zoneid":this.params.zoneid||"0","buy_quantity":this.info.count,"provide_uin":n,"wx_appid":this.params.wxappid||"","jump_url":encodeURIComponent(window.location.protocol+"//"+window.location.host+"/midas/minipay_v2/views/public/mb.shtml")},t=S.getLoginStatus();t.wechat&&(this.params.wxappid&&(e.wx_appid=this.params.wxappid),"1"==this.params.change_wx_openid&&(e.change_wx_openid=1));var i=this.getOutTradeNo();i&&(e.out_trade_no=i);var o=this.getPreCouponInfo();o&&(e.rollback_coupon=1,e.channel_orderid=o.channel_orderid);var s=this.getGlobalCoupon();return a.channels[this.channel]&&a.channels[this.channel].visibleCoupon&&a.channels[this.channel].visibleCoupon.indexOf(this.type)>-1&&s&&(e.sp_info=[s.getCodeId(),s.getBatchId()].join(",")),this.params.discountid&&(e.discountid=this.params.discountid),e},"getAutoUnit":function(){return""},"genCouponList":function(){this.info.couponList||(this.info.couponList=new b({"sessionObj":this.session,"appid":this.getAppid(),"pf":this.compatiblePf(this.getPf()),"price":this.getPrice().price,"sandbox":this.params.sandbox,"pageSize":20,"channel":this.getDefaultChannel(),"supportChannel":this.getSupportChannels(),"billno":this.getOutTradeNo()}),this.info.couponList.parse(this.getOrderInfo()),this.checkCoupon(this.info.couponList.getDefaultRecommend()))},"checkCoupon":function(n){},"closeTips":function(n,e){n=n||"",e=e||{};var t=this;w.create({"msg":n,"hideCancel":e.hideCancel,"confirmBtnTxt":e.confirmBtnTxt,"cancelBtnTxt":e.cancelBtnTxt,"onInit":function(n){t.destroyCloseTips=n},"onConfirm":function(){i.lang.isFunction(e.onConfirm)&&e.onConfirm()},"onCancel":function(){i.lang.isFunction(e.onCancel)&&e.onCancel()}})},"couponRollbackOnClose":function(n){var e=this.getGlobalCoupon(),t=this;if(e){var i=function(n){var i=e.getId();this.report("coupon.rollback",{"action":i,"resultinfo":{"rollbackFrom":n||""}}),this.cgi&&this.cgi.revertCoupon({"zoneid":this.params.zoneid||"1","out_trade_no":this.getOutTradeNo(),"channel_orderid":this.getPreChannelId()},function(e){var o=!1;~~e.ret||(o=!0),t.report("coupon.rollback."+(o?"success":"failed"),{"action":i,"resultinfo":{"rollbackFrom":n||""}})})}.bind(this),o=this.currentPage();if("result"===o&&"fail"===this.resultStatus&&(this.report("couponrollback.from.resultpage"),n=!0),!n)return this.report("couponrollback.confirm.close"),!t.destroyCloseTips&&this.closeTips("优惠支付中，关闭本页面可能影响当前购买",{"confirmBtnTxt":"继续支付","cancelBtnTxt":"确认关闭","onConfirm":function(){t.destroyCloseTips=null,this.report("couponrollback.continue.pay")}.bind(this),"onCancel":function(){t.destroyCloseTips=null,this.report("couponrollback.cancel.pay"),this.getOutTradeNo()&&this.getPreChannelId()?i("cancelPay"):this.report("couponrollback.noorder"),
+u.notify("close")}.bind(this)}),!1;this.report("couponrollback.direct.close"),i("directClose")}},"render":function(n){if("function"!=typeof n)throw Error("you must provide a function to put channel template");this.genCouponList(),this.info.couponList.hasValidCoupon()&&("1"==this.getParams()["supportCloseConfirm"]?(this.report("listen.couponrollback.confirmClose"),u.confirmClose("couponRollback",function(){return this.couponRollbackOnClose()}.bind(this))):(this.report("listen.couponrollback.normalClose"),u.register("close",function(n){this.couponRollbackOnClose(!0)}.bind(this)))),n(r()),this.init()},"getPf":function(){return this.getParams().pf},"getProductName":function(){return this.getOrderInfo().product_name},"getAppid":function(){return this.getParams().appid},"setGlobalCoupon":function(n){this.info.current_coupon=n},"getGlobalCoupon":function(){return this.info.current_coupon},"supportCoupon":function(){return 1!=this.getParams().hide_coupon},"getCouponList":function(){return this.info.couponList},"getCgi":function(){return this.cgi},"getOrderInfo":function(){return this.info},"getOutTradeNo":function(){return this.info.ext_trade_no||this.info.out_trade_no},"getChargeMsg":function(n){return"完成上笔支付还需："+n+" Q币"},"getPayUin":function(){return this.session["getSessionParam"]().openid},"buyForSelf":function(){return this.getPayUin()==this.getProvideUin()},"supportAutoPay":function(){return!1},"getAutoPay":function(){return!1},"setAutoPay":function(){},"getParams":function(){return this.params},"getSandbox":function(){return~~this.params.sandbox},"getFriendList":function(n,e){f(this,e,n)},"getSession":function(){return this.session},"isWxBindQQ":function(){return this.info.wc_bind_qq},"setSubSession":function(n,e){var n=n||+i.cookie.get("uin").substr(1),e=e||i.cookie.get("skey");this.subSession=new _({"openid":n,"openkey":e,"sessionid":"uin","sessiontype":"skey"})},"getSubsession":function(){return this.subSession},"clearSubSession":function(){this.subSession=null},"isNewMcard":function(){return 1==~~this.info.mcard_mode},"isInterfaceDisabled":function(){return this._interfaceDisabled},"getChannelDisableText":function(){return this._channelDisableText},"getMcardBalance":function(){return i.math.toDecimal(i.math.div(~~this.info.mcard_balance,100),2)},"onDispatch":function(n){},"getSubSession":function(){return this.subSession},"changeChannel":function(n){var e=this;e.currentChannel&&e.currentChannel.onDestroy&&e.currentChannel.onDestroy(),e.currentChannel=null,e.currentChannel=n},"changePage":function(n,e){s.go(n,e)},"currentPage":function(){return s.getCurrent()},"_toResult":function(n,e){e=e||{};var t=["orderInfo","params","cgi","session","subSession","status"];this.resultStatus=n,i.fn.each(e,function(n,e){if(t.indexOf(e)>-1)throw Error("you can not use key:"+e)}.bind(this)),s.go("result",i.fn.extend({"priceInfo":this.getPrice(),"orderInfo":this.info,"params":this.params,"cgi":this.cgi,"session":this.session,"subSession":this.subSession,"status":n,"provide_uin":!this.buyForSelf()&&S.getLoginStatus().qq?this.getProvideUin():"","channel":e.channel||(this.currentChannel?this.currentChannel.channelObj.channel:"")},e))},"onSuccess":function(n){this.setGlobalCoupon(null);try{i.lang.isFunction(this.destroyCloseTips)&&this.destroyCloseTips(),this.destroyCloseTips=null}catch(e){}this._toResult("success",n)},"onFail":function(n){n.displayInfo||(n.res&&n.res.err_code?n.displayInfo=v.errorMsg(n.res.err_code,n.res):n.displayInfo=v.errorMsg(n.res,n.res)),this._toResult("fail",n)},"onError":function(n){this._toResult("error",n)},"onPending":function(n){this._toResult("waiting",n)},"buy":i.fn.emptyFunc,"onBuy":function(n,e){var t=!1,o=String(e.err_code);if((["0"].indexOf(String(e.ret))>-1||["2025-30202-30109"].indexOf(o)!==-1)&&(n.rollback_coupon&&this.setPreCouponInfo(null),n.sp_info&&e.info)){var s=this.getGlobalCoupon(),a=e.info.channel_orderid;outTradeNo=this.getOutTradeNo(),s&&a&&(this.setPreCouponInfo({"channel_orderid":a,"coupon":s}),this.setPreChannelId(a),this.info.couponList.setBillingInfo(s,{"outTradeNo":outTradeNo,"channelOrderId":a}))}var r=this;if(["1003-11214-35105"].indexOf(o)!==-1)w.create({"msg":"该抵扣券已被使用而冻结，请在列表页中激活后再尝试","hideCancel":!0,"onConfirm":function(){r.report("coupon.frozen.confirm");var n=r.getGlobalCoupon();n&&n.unactivate(),r.setGlobalCoupon(null),r.emit("refreshCoupon");var e=r.getPreChannelId();e&&r.info.couponList.setBillingInfo(n,{"outTradeNo":r.getOutTradeNo(),"channelOrderId":e})}}),t=!0;else if(["2025-30202-30109"].indexOf(o)!==-1)w.create({"msg":"该抵扣券已被使用，请选择其它券","hideCancel":!0,"onConfirm":function(){r.report("coupon.used.confirm")}}),t=!0;else if(v.matchError("1001-1001-0",e)){var c=this.cgi._getSessionParam();i.cookie.get("midas_openid")==c.openid&&i.cookie.get("midas_openkey")==decodeURIComponent(c.openkey)||(w.create({"msg":"登陆态已失效，请刷新页面再试一试","confirmBtnTxt":"刷新","hideCancel":!0,"onConfirm":function(){location.reload()}.bind(this)}),t=!0)}return t},"setPreCouponInfo":function(n){this.info.pre_coupon_info=n},"setPreChannelId":function(n){this.info.pre_channel_id=n},"getPreChannelId":function(){return this.info.pre_channel_id},"getPreCouponInfo":function(){return this.info.pre_coupon_info},"destroySubChannel":function(){this.subCurrentChannel&&this.subCurrentChannel.onDestroy&&this.subCurrentChannel.onDestroy(),this.subCurrentChannel=null},"listenDataChange":function(){this.on("dataChange",function(n,e){switch(n){}})},"listenChannelResize":function(){var n=this;this.on("channelResize",function(e){e=e||n.currentChannel.channelObj.height,n.vm.height=e,n.emit("channelChange",i.fn.extend({},n.currentChannel.channelObj,{"height":e}))})},"channelDiscountCanChange":function(){return!0},"getDefaultCouponId":function(){return this.params.coupon_id},"editableCoupon":function(){return"0"!=this.params.editable_coupon},"getDefaultChannel":function(){return this.channel||(Array.isArray(this.info.recommend_channel)?this.info.recommend_channel[0]:this.info.recommend_channel)},"init":function(){var n=this;if(~~this.params.sandbox&&w.create({"opacity":.2,"msg":"温馨提示：您即将进入<em style='color:#f02e2c'>测试环境</em>，任何充值都无法在真实环境中使用!","hideCancel":!0,"confirmBtnTxt":"我知道了","onConfirm":function(){}}),!this.channelHandler)throw Error("you must provide the channel handler for rendering and operating the channel ");this.listenDataChange(),this.listenChannelResize();var e=this.getChannelData();try{this.report("channel.default",{"action":e.defaultChannel||e.channels[0].name})}catch(t){}this.vm=avalon.define({"$id":"channel","channel":this.channel,"selectedChannelDetail":"","channelIsNeedCached":!1,"showChannel":!0,"$skipArray":["channelSelectorConfig"],"channelSelectorConfig":{"showDiscount":!this.channelDiscountCanChange()||this.getPrice().price>=a.LEAST_DISCOUNT_PRICE,"data":e},"height":"auto","selectChannelMethod":function(e){"undefined"!=typeof e&&(n.vm.height=e.height,g.setChannel(e.channel),n.report("channel.switch",{"action":e.channel}),n.reportUser("channel",e.channel),n.onSelectChannel(e),n.emit("channelChange",e))}})},"toggleChannelDiscount":function(n){var e;if(e=avalon.vmodels["channelSelector"]){if(e.showDiscount==!n)return;e.showDiscount=!n}},"rebindChannel":function(n){n=n||{},n.cgi&&(this.cgi=n.cgi),n.params&&(this.params=n.params),n.info&&(this.info=i.fn.extend(n.info)),this.genCouponList(),this.vm.selectedChannelDetail=null,avalon.vmodels["channelSelector"]&&(avalon.vmodels["channelSelector"].data=this.getChannelData())},"getSupportChannels":function(){return this.supportChannelList&&0!=this.supportChannelList.length||this.getChannelData(),this.supportChannelList},"getChannelData":function(){var n,e,t=a.channels,i={},o=this.getPayFor(),s=this.getPayUin(),r=(this.params.disable_channels||"").split(","),c=this.channel||(Array.isArray(this.info.recommend_channel)?this.info.recommend_channel[0]:this.info.recommend_channel);return{"channels":this.info.channel.filter(function(a){if(i=t[a.name],window.WHITELISTUSER&&Array.isArray(window.WHITELISTUSER[a.name])&&window.WHITELISTUSER[a.name].length&&window.WHITELISTUSER[a.name].indexOf(s)==-1)return!1;if(r&&Array.isArray(r)&&r.length>0&&r.indexOf(a.name)>-1)return a.name==c&&(c=null),!1;var l=i&&i.status;if(l){if(e=i.invisible,(a.name==m.QBQD||a.name==m.QBQD)&&this.info.qqacct_balance==-1)return!1;n=e?e[o]:null,l=!(n&&n.indexOf(this.type)>-1),l&&(a.height=i.height||"auto",this.supportChannelList.push(a.name))}return l}.bind(this)),"defaultChannel":c}},"getChannelDiscountInfo":function(n){var e,t={"showDiscount":n.discount},i=this.getPayFor(),o={};return n.name==m.KJ?(o=this.info.discountInfo,e=o.is_discount,e&&this.info.isVip?(t.showDiscount=Math.min(n.discount,i==p.SELF?o.recharge_discount:o.other_recharge_discount),t.isMinDiscount=!0):o.default_discount&&(t.showDiscount=o.default_discount)):n.name==m.QQWALLET&&(o=this.info.walletDiscountInfo,e=o.is_discount,1!=this.params.recharge_other&&e&&(o.recharge_role>=1||this.info.payFor==p.SELF)?(t.showDiscount=o.recharge_discount,t.isMinDiscount=!0):o.default_discount&&(t.showDiscount=o.default_discount)),t},"triggerSelectChannel":function(n,e){this.vm&&avalon.vmodels.channelSelector&&avalon.vmodels.channelSelector.triggerSelectChannel(n,e)},"onSelectChannel":function(n,e){if(e=e||{},n){var t=this.channel=n.channel,o=this.vm,s=this,r=a.channels[t].rendered,c=I.bind(this)(t);o.channelIsNeedCached=c,this.channelHandler[t]?avalon.nextTick(function(){s.channelListWrap||(s.channelListWrap=document.getElementById("channelListWrap"));var l={};l=s.channelHandler[n.channel].call(null,s,n,i.fn.extend({"hasRendered":r,"extraDetail":document.getElementById("channelDetailExtraArea")},e)),l&&(c&&!r?(o.selectedChannelDetail=null,s.channelListWrap.appendChild(avalon.parseHTML('<div "ms-visible"="channel===\''+t+"'\">"+l.tpl+"</div>")),a.channels[t].rendered=!0,avalon.scan(s.channelListWrap,s.vm)):c?o.selectedChannelDetail=null:o.selectedChannelDetail=l.tpl,avalon.nextTick(function(){try{l.channelInstance.emit("render",c&&!r)}catch(n){console.log(n)}}),s.changeChannel(l.channelInstance),s.vm.channel=t)}):(s.channel=null,o.selectedChannelDetail=null,s.changeChannel(null))}},"renderChannel":function(n,e){if(this.currentChannel){var t=this;if(this.channelHandler[e.channelObj.channel]){var i=this.channelHandler[e.channelObj.channel].call(null,t,e.channelObj,e);if(!i)return;n(i.tpl),avalon.nextTick(function(){i.channelInstance.emit("render")}),this.subCurrentChannel=i.channelInstance}}},"compatiblePf":function(n){if(n){var e=n.split("-");1==e.length?(e.unshift(S.getLoginStatus().wechat?"wechat_pc":"qq_pc"),e.push("website")):2==e.length&&e.push("website"),n=e.join("-")}return n},"rcRestrict":function(n,e){n=n||{};var t=(100*this.getPrice().price,{"type":"","req_from":"web","pay_method":this.getChannelObj().channel}),o={};i.lang.isFunction(this.getRcRestrictParams)&&(o=this.getRcRestrictParams()),i.fn.extend(t,o,n),this.cgi.rcRestrict(t,function(n){i.lang.isFunction(e)&&e(n)})}}),n.exports=x},"122488276":function(n,e,t){var i=t(4),o=i,s=t(9);t(6);var a=function(n){n=n||{},this.pf=n.pf||"vip_m-pay_html5-html5",this.pfkey=n.pfkey||"pfkey",this.appid=n.appid,this.sandbox=~~n.sandbox,this.sessionObj=n.sessionObj||null,this.mid=n.mid||"r",this.domain="api.unipay.qq.com",2==this.sandbox?this.domain="dev."+this.domain:1==this.sandbox&&(this.domain="sandbox."+this.domain),this.domainq=this.sandbox?"sandbox.api.unipay.qq.com":"q.unipay.qq.com",this.aesKey=this.sandbox?"0269bd8009164afc":"2Wozy2aksie1puXU"};a.sessionToken=window._activity_api_session_token||i.fn.uuid()+(new Date).getTime(),a.url={"mobileCouponsInfo":{"url":"$domain$/v1/r/$appid$/mobile_coupons_info?","https":!1},"mobileCouponsRollback":{"url":"$domain$/v1/r/$appid$/mobile_coupons_rollback?"}},a.prototype={"aes":function(n,e){var t=[];i.fn.each(e,function(e){t.push(e+"="+(n[e]||""))}),t=t.join("&");var o=s.AES.encrypt(s.enc.Latin1.parse(t),s.enc.Latin1.parse(this.aesKey),{"padding":s.pad.ZeroPadding,"iv":s.enc.Latin1.parse(this.aesKey),"mode":s.mode.ECB}).ciphertext.toString(s.enc.Hex);return{"encrypt_msg":o,"msg_len":t.length}},"_getCgiUrl":function(n,e,t,o){t=t||{},o=o||{};var s;return n.https||"https:"==location.protocol?s="https":(s="http",e.from_https=1),i.tmpl(n.url,i.fn.extend({"appid":this.appid,"mid":this.mid||"r","domain":[s,"://",o.domainq?this.domainq:this.domain].join("")},t))+i.req.serializeParam(e)},"setSession":function(n){this.sessionObj=n},"_getSessionParam":function(){return i.fn.extend({"pf":this.pf,"pfkey":this.pfkey,"from_h5":1,"session_token":a.sessionToken,"r":Math.random()},this.sessionObj.getSessionParam())},"jsonp":function(n,e,t){if(t=t||{},t.proxy)e({"ret":0,"jump":n});else{var o,s=t.callback||"_h5pay"+Math.floor(1e6*Math.random());n=i.fn.addParam({"format":"jsonp_"+s,"t":(new Date).getTime()},n),window[s]=function(n){o=n};var a=((new Date).getTime(),n.split("?")[0].split("/")),r=(i.fn.getParam("type",n),a[a.length-1],{"ret":-9998,"path":n,"msg":"系统繁忙，请稍后再试！"});avalon.getScript(n).done(function(){if(o||(o=r),"function"==typeof e)try{e(o)}catch(n){}}).fail(function(n){e(r)})}},"getCouponList":function(n,e,t){n=n||{};var i={};o.fn.extend(i,this._getSessionParam()),o.fn.extend(i,n),o.fn.extend(i,this.aes(i,["openid","openkey","session_id","session_type","pf"])),this.jsonp(this._getCgiUrl(a.url.mobileCouponsInfo,i,{},t),e,t)},"revertCoupon":function(n,e,t){n=n||{};var i={"action":"rollback_freeze_sp_coupons"};o.fn.extend(i,this._getSessionParam()),o.fn.extend(i,n),o.fn.extend(i,this.aes(i,["openid","openkey","session_id","session_type","pf","channel_orderid","out_trade_no","pay_method"])),["channel_orderid","out_trade_no","pay_method"].forEach(function(n){try{delete i[n]}catch(e){}}),this.jsonp(this._getCgiUrl(a.url.mobileCouponsRollback,i,t),e,t)}},n.exports=a},"122741454":function(n,e,t){var i=t(4),o=t(100835382),s=t(111578709),a=function(n,e,t){s.apply(this,arguments)};i.inherits(a,s),i.fn.extend(a.prototype,{"initVm":function(){s.prototype.initVm.call(this),this.vm.directpay?this.vm.showNext=!1:this.toComplete()},"toComplete":function(){this.store.onSelectChannel(this.channelObj,{"mode":o.MODE.COMPLETE})},"onChange":function(){s.prototype.onChange.call(this),this.vm.directpay?this.vm.showNext=!1:this.toComplete()}}),a.getTemplate=function(n){return n=n||{},s.getTemplate(n)},a.create=function(n,e,t){return new a(n,e,t)},n.exports=a}});
+</script>
+
+<script type="text/javascript" defer="defer" async="async"  src="//tajs.qq.com/stats?sId=60464160" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(){
+        if(window.H_T_report&&window.gameTimeEnd){
+            H_T_report({
+                jsall:gameTimeEnd-vendorTimeStart,
+                css:vendorTimeStart -_sTime
+            },'save');
+        }
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="utf-8" />
+        <title>Pure HTML5 file upload | Script Tutorials</title>
+        <link href="main.css" rel="stylesheet" type="text/css" />
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <!-- <header>
+            <h2>Pure HTML5 file upload</h2>
+         
+        </header> -->
+        <div class="container">
+            <!-- <div class="contr"><h2>You can select the file (image) and click Upload button</h2></div> -->
+
+            <div class="upload_form_cont">
+                <form id="upload_form" enctype="multipart/form-data" method="post" action="upload.php">
+                    <div>
+                        <!-- <div><label for="image_file">Please select image file</label></div> -->
+                        <div><input type="file" name="image_file" id="image_file" onchange="fileSelected();" /></div>
+                    </div>
+                    <div>
+                        <input type="button" value="Upload" onclick="startUploading()" />
+                    </div>
+                    <div id="fileinfo">
+                        <div id="filename"></div>
+                        <div id="filesize"></div>
+                        <div id="filetype"></div>
+                        <div id="filedim"></div>
+                    </div>
+                    <div id="error">You should select valid image files only!</div>
+                    <div id="error2">An error occurred while uploading the file</div>
+                    <div id="abort">The upload has been canceled by the user or the browser dropped the connection</div>
+                    <div id="warnsize">Your file is very big. We can't accept it. Please select more small file</div>
+
+                    <div id="progress_info">
+                        <div id="progress"></div>
+                        <div id="progress_percent">&nbsp;</div>
+                        <div class="clear_both"></div>
+                        <div>
+                            <div id="speed">&nbsp;</div>
+                            <div id="remaining">&nbsp;</div>
+                            <div id="b_transfered">&nbsp;</div>
+                            <div class="clear_both"></div>
+                        </div>
+                        <div id="upload_response"></div>
+                    </div>
+                </form>
+
+                <!-- <img id="preview" /> -->
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+<!-- using AndroidXml;
+using Ionic.Zip;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+ 
+namespace APKRead
+{
+    class NamespaceInfo
+    {
+        public string Prefix { get; set; }
+        public string Uri { get; set; }
+    }
+ 
+ 
+    class Program
+    {
+ 
+        static List<AndroidInfo> androidInfos = new List<AndroidInfo>();
+ 
+ 
+        static void Main(string[] args)
+        {
+            //要分析的文件名称
+            var manifest = "AndroidManifest.xml";
+ 
+            //读取apk,通过解压的方式读取
+            using (var zip = ZipFile.Read("News.apk"))
+            {
+                using (Stream zipstream = zip[manifest].OpenReader())
+                {
+                    //将解压出来的文件保存到一个路径（必须这样）
+                    using (var fileStream = File.Create(manifest, (int)zipstream.Length))
+                    {
+                        // Initialize the bytes array with the stream length and then fill it with data
+                        byte[] bytesInStream = new byte[zipstream.Length];
+                        zipstream.Read(bytesInStream, 0, bytesInStream.Length);
+                        // Use write method to write to the file specified above
+                        fileStream.Write(bytesInStream, 0, bytesInStream.Length);
+                    }
+                }
+            }
+ 
+            //读取解压文件的字节数
+            byte[] data = File.ReadAllBytes(manifest);
+            if (data.Length == 0)
+            {
+                throw new IOException("Empty file");
+            }
+ 
+            #region 读取文件内容
+            using (var stream = new MemoryStream(data))
+            {
+                var reader = new AndroidXmlReader(stream);
+ 
+                while (reader.Read())
+                {
+                    switch (reader.NodeType)
+                    {
+                        case XmlNodeType.Element:
+                            {
+                                AndroidInfo info = new AndroidInfo();
+                                androidInfos.Add(info);
+                                info.Name = reader.Name;
+                                info.Settings = new List<AndroidSetting>();
+                                for (int i = 0; i < reader.AttributeCount; i++)
+                                {
+                                    reader.MoveToAttribute(i);
+ 
+                                    AndroidSetting setting = new AndroidSetting() { Name = reader.Name, Value = reader.Value };
+                                    info.Settings.Add(setting);
+                                }
+                                reader.MoveToElement();
+                                break;
+                            }
+                    }
+                }
+            }
+            #endregion
+ 
+            File.Delete(manifest);
+ 
+            StringBuilder builder = new StringBuilder();
+            foreach (var androidInfo in androidInfos)
+            {
+                builder.Append(string.Format("{0}:",androidInfo.Name));
+                foreach (var setting in androidInfo.Settings)
+                {
+                    builder.Append("{");
+                    builder.Append(string.Format("'{0}':'{1}'",setting.Name,setting.Value));
+                    builder.Append("},");
+                }
+                builder.Append("\n\n");
+            }
+            Console.WriteLine(builder.ToString());
+        }
+    }
+ 
+    /// <summary>
+    /// android应用程序信息
+    /// </summary>
+    public class AndroidInfo
+    {
+        public string Name { get; set; }
+ 
+        public List<AndroidSetting> Settings { get; set; }
+    }
+ 
+    /// <summary>
+    /// 设置
+    /// </summary>
+    public class AndroidSetting
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+    }
+} -->
